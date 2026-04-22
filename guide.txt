@@ -1,0 +1,429 @@
+================================================================
+PHARMAEASE - COMPLETE PROJECT GUIDE
+Full Stack Next.js Pharmacy Website
+================================================================
+
+================================================================
+THEME SYSTEM (USE THIS IN EVERY PROMPT / PAGE)
+================================================================
+
+BACKGROUND COLORS:
+- Page background:        #F0F4F8  (soft blue-gray, not too light)
+- Card / section bg:      #FFFFFF
+- Navbar bg:              #FFFFFF  with border-bottom: 1px solid #D9E2EC
+- Footer bg:              #1B2A3B
+- Admin sidebar bg:       #1B2A3B
+
+PRIMARY COLOR (Brand):    #0077B6  (strong pharmacy blue)
+PRIMARY HOVER:            #005F8E
+PRIMARY LIGHT (tint):     #E0F2FE
+
+SECONDARY COLOR:          #00B4A6  (teal/green accent)
+SECONDARY HOVER:          #008C82
+
+DANGER / ERROR:           #E53E3E
+SUCCESS:                  #38A169
+WARNING:                  #D69E2E
+INFO:                     #3182CE
+
+TEXT COLORS:
+- Heading:                #1A202C
+- Body text:              #2D3748
+- Muted text:             #718096
+- Placeholder:            #A0AEC0
+- White text:             #FFFFFF
+- Footer text:            #CBD5E0
+
+BORDER COLOR:             #D9E2EC
+INPUT BORDER:             #CBD5E0
+INPUT FOCUS BORDER:       #0077B6
+
+FONT FAMILY:
+- Headings:   'Sora', sans-serif        (import from Google Fonts)
+- Body:       'DM Sans', sans-serif     (import from Google Fonts)
+
+FONT SIZES:
+- h1:         2.5rem   font-weight: 700
+- h2:         2rem     font-weight: 700
+- h3:         1.5rem   font-weight: 600
+- h4:         1.25rem  font-weight: 600
+- p:          1rem     font-weight: 400  line-height: 1.7
+- small:      0.875rem
+- label:      0.875rem font-weight: 500
+
+BORDER RADIUS:
+- Button:     8px
+- Card:       12px
+- Input:      8px
+- Badge:      999px (pill)
+- Modal:      16px
+
+SHADOWS:
+- Card:       0 2px 12px rgba(0, 0, 0, 0.08)
+- Navbar:     0 1px 8px rgba(0, 0, 0, 0.06)
+- Button:     0 2px 8px rgba(0, 119, 182, 0.25)
+- Modal:      0 8px 40px rgba(0, 0, 0, 0.15)
+
+BUTTON STYLES:
+- Primary btn:    bg #0077B6, text white, hover #005F8E, radius 8px, padding 10px 22px
+- Secondary btn:  bg transparent, border 2px solid #0077B6, text #0077B6, hover bg #E0F2FE
+- Danger btn:     bg #E53E3E, text white, hover #C53030
+- Disabled btn:   bg #CBD5E0, text #718096, cursor not-allowed
+
+INPUT STYLES:
+- border: 1px solid #CBD5E0
+- border-radius: 8px
+- padding: 10px 14px
+- font-size: 1rem
+- color: #2D3748
+- background: #FFFFFF
+- focus: border-color #0077B6, box-shadow 0 0 0 3px rgba(0,119,182,0.15)
+
+NAVBAR STYLE:
+- background: #FFFFFF
+- border-bottom: 1px solid #D9E2EC
+- height: 68px
+- box-shadow: 0 1px 8px rgba(0,0,0,0.06)
+- Logo left: color #0077B6, font Sora bold
+- Nav links center: color #2D3748, hover color #0077B6, font DM Sans
+- Right side: Login btn (outlined), Signup btn (filled primary)
+
+RESPONSIVE BREAKPOINTS:
+- Mobile:     max-width 640px
+- Tablet:     max-width 1024px
+- Desktop:    min-width 1025px
+- Navbar becomes hamburger menu below 768px
+- Cards become full width on mobile
+- Sidebar becomes bottom nav or drawer on mobile
+
+IMAGE STYLE:
+- Medicine images: width 100%, border-radius 12px, object-fit cover
+- Logo images: height 40px auto width
+- All images: lazy loading enabled
+
+LINK STYLE:
+- color: #0077B6
+- hover: underline + color #005F8E
+- visited: #005F8E
+
+BADGE / PILL STYLES:
+- In Stock:       bg #C6F6D5, text #276749
+- Out of Stock:   bg #FED7D7, text #C53030
+- Prescription:   bg #FEF3C7, text #92400E
+- New:            bg #E0F2FE, text #0077B6
+
+================================================================
+PROJECT OVERVIEW
+================================================================
+
+Project Name:     PharmaEase
+Type:             Full Stack Web App
+Framework:        Next.js (App Router)
+Database:         MongoDB with Mongoose
+Auth:             JWT (custom, no NextAuth)
+Payment:          JazzCash / EasyPaisa (screenshot upload by user, admin approves)
+Medicine API:     OpenFDA  (https://api.fda.gov/drug/label.json)
+Roles:            patient | admin
+
+================================================================
+ALL PAGES
+================================================================
+
+PUBLIC PAGES (no login required):
+1.  /                        Home / Landing Page
+2.  /medicines               All Medicines (browse + filter)
+3.  /medicines/[id]          Single Medicine Detail Page
+4.  /drug-info               Drug Info Search (OpenFDA API)
+5.  /about                   About Us
+6.  /contact                 Contact Us
+7.  /login                   Login Page
+8.  /register                Register Page
+9.  /404                     Not Found Page
+
+PATIENT PAGES (login required, role: patient):
+10. /dashboard               Patient Dashboard
+11. /cart                    Cart Page
+12. /checkout                Checkout Page
+13. /orders                  Order History
+14. /orders/[id]             Single Order + Tracking Page
+15. /profile                 Profile Page
+
+ADMIN PAGES (login required, role: admin):
+16. /admin                   Admin Dashboard (stats, graphs)
+17. /admin/medicines         All Medicines List
+18. /admin/medicines/add     Add Medicine Form
+19. /admin/medicines/[id]    Edit Medicine Form
+20. /admin/orders            All Orders (confirm / reject)
+21. /admin/orders/[id]       Single Order Detail + Payment Screenshot
+22. /admin/users             All Registered Users
+23. /admin/inventory         Inventory + Low Stock View
+
+================================================================
+NAVBAR LAYOUT
+================================================================
+
+LEFT:    PharmaEase logo (text logo with pill icon, color #0077B6)
+CENTER:  Home | Medicines | Drug Info | About Us | Contact Us
+RIGHT:   [Login] (outlined btn)  [Sign Up] (filled btn)
+
+After login (patient):
+RIGHT:   Cart icon (with count badge) | Profile dropdown (My Orders, Profile, Logout)
+
+After login (admin):
+RIGHT:   Admin badge + profile dropdown (Go to Admin, Logout)
+
+================================================================
+FUNCTIONALITIES — PATIENT
+================================================================
+
+AUTH:
+- Register with name, email, password
+- Login with email, password
+- JWT token stored in httpOnly cookie
+- Protected routes redirect to /login
+
+MEDICINES PAGE:
+- Grid of medicine cards (image, name, price, stock badge, add to cart)
+- Filter by category
+- Sort by price / name
+- Pagination
+
+MEDICINE DETAIL PAGE:
+- Medicine image
+- Name, price, category, stock status
+- Description
+- Prescription warning label if required
+- Drug info pulled from OpenFDA API (dosage, side effects, warnings)
+- Add to Cart button
+
+DRUG INFO PAGE:
+- Search bar (type medicine name)
+- Hits OpenFDA API live
+- Shows: brand name, generic name, dosage, side effects, warnings, manufacturer
+
+CART:
+- List of added medicines
+- Quantity control (increase, decrease, remove)
+- Total price
+- Proceed to Checkout button
+
+CHECKOUT:
+- Order summary
+- Delivery address form
+- Payment method: JazzCash or EasyPaisa
+- Show account number to transfer to
+- Upload screenshot of payment
+- Place Order button
+
+ORDER TRACKING:
+- Order status: Pending → Payment Verified → Processing → Shipped → Delivered
+- Admin updates status manually
+- Patient sees live status on /orders/[id]
+
+PROFILE:
+- Edit name, email, address
+- Change password
+
+================================================================
+FUNCTIONALITIES — ADMIN
+================================================================
+
+DASHBOARD:
+- Total sales (amount)
+- Total orders count
+- Total users count
+- Total medicines count
+- Low stock alerts
+- Recent orders table
+- Sales bar chart (monthly)
+
+MEDICINES MANAGEMENT:
+- List all medicines with image, name, price, stock, category
+- Add medicine (name, description, price, stock, category, image upload, prescription required yes/no)
+- Edit medicine
+- Delete medicine
+
+ORDERS MANAGEMENT:
+- List all orders with patient name, total, status, date
+- Click order to see full detail
+- View payment screenshot uploaded by patient
+- Change order status (Pending / Payment Verified / Processing / Shipped / Delivered / Rejected)
+
+USERS MANAGEMENT:
+- List all registered patients
+- See name, email, join date, total orders
+
+INVENTORY:
+- List medicines with stock count
+- Highlight low stock (below 10 units)
+
+================================================================
+DATABASE MODELS
+================================================================
+
+User:
+- name, email, password (hashed), role (patient/admin), address, createdAt
+
+Medicine:
+- name, description, price, stock, category, image (url), prescriptionRequired (bool), createdAt
+
+Order:
+- userId, items (array of medicineId + quantity + price), totalAmount,
+  deliveryAddress, paymentMethod (jazzcash/easypaisa), paymentScreenshot (url),
+  status, createdAt
+
+================================================================
+API ROUTES (Next.js Route Handlers)
+================================================================
+
+AUTH:
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/auth/logout
+
+MEDICINES:
+GET    /api/medicines              (public, paginated, filterable)
+GET    /api/medicines/[id]         (public)
+POST   /api/medicines              (admin only)
+PUT    /api/medicines/[id]         (admin only)
+DELETE /api/medicines/[id]         (admin only)
+
+ORDERS:
+POST   /api/orders                 (patient: place order)
+GET    /api/orders                 (patient: their own orders)
+GET    /api/orders/[id]            (patient: single order)
+GET    /api/admin/orders           (admin: all orders)
+PUT    /api/admin/orders/[id]      (admin: update status)
+
+USERS:
+GET    /api/admin/users            (admin: all users)
+
+UPLOAD:
+POST   /api/upload                 (payment screenshot, using multer or cloudinary)
+
+DRUG INFO (proxy to OpenFDA):
+GET    /api/drug-info?name=        (hits OpenFDA API server side)
+
+================================================================
+PAYMENT FLOW
+================================================================
+
+1. Patient selects JazzCash or EasyPaisa at checkout
+2. Website shows the account number to send money to
+3. Patient sends money manually on their phone
+4. Patient uploads screenshot on checkout page
+5. Order is saved with status: Pending
+6. Admin opens order, views screenshot
+7. Admin verifies and changes status to: Payment Verified
+8. Order moves forward in pipeline
+
+================================================================
+OPENFDAAPI USAGE
+================================================================
+
+Base URL: https://api.fda.gov/drug/label.json
+
+Search by name:
+https://api.fda.gov/drug/label.json?search=openfda.brand_name:"paracetamol"&limit=5
+
+Fields used:
+- openfda.brand_name
+- openfda.generic_name
+- openfda.manufacturer_name
+- dosage_and_administration
+- warnings
+- adverse_reactions
+- indications_and_usage
+
+No API key required. Free to use.
+
+================================================================
+FOLDER STRUCTURE (Next.js App Router)
+================================================================
+
+/app
+  /api
+    /auth
+      /register/route.js
+      /login/route.js
+      /logout/route.js
+    /medicines/route.js
+    /medicines/[id]/route.js
+    /orders/route.js
+    /orders/[id]/route.js
+    /admin
+      /orders/route.js
+      /orders/[id]/route.js
+      /users/route.js
+    /drug-info/route.js
+    /upload/route.js
+  /(public)
+    /page.js                  (Home)
+    /medicines/page.js
+    /medicines/[id]/page.js
+    /drug-info/page.js
+    /about/page.js
+    /contact/page.js
+  /(auth)
+    /login/page.js
+    /register/page.js
+  /(patient)
+    /dashboard/page.js
+    /cart/page.js
+    /checkout/page.js
+    /orders/page.js
+    /orders/[id]/page.js
+    /profile/page.js
+  /(admin)
+    /admin/page.js
+    /admin/medicines/page.js
+    /admin/medicines/add/page.js
+    /admin/medicines/[id]/page.js
+    /admin/orders/page.js
+    /admin/orders/[id]/page.js
+    /admin/users/page.js
+    /admin/inventory/page.js
+
+/components
+  /layout
+    Navbar.jsx
+    Footer.jsx
+    AdminSidebar.jsx
+  /ui
+    Button.jsx
+    Input.jsx
+    Card.jsx
+    Badge.jsx
+    Modal.jsx
+    Loader.jsx
+  /medicine
+    MedicineCard.jsx
+    MedicineGrid.jsx
+    DrugInfoResult.jsx
+  /order
+    OrderCard.jsx
+    OrderStatus.jsx
+    PaymentUpload.jsx
+  /admin
+    StatsCard.jsx
+    SalesChart.jsx
+    OrderTable.jsx
+
+/lib
+  dbConnect.js
+  jwt.js
+  cloudinary.js (or local upload)
+
+/models
+  User.js
+  Medicine.js
+  Order.js
+
+/middleware.js     (route protection using JWT)
+
+/public
+  /images
+
+================================================================
+END OF GUIDE
+================================================================
