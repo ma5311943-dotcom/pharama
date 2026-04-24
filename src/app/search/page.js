@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import {
   Search, Pill, Loader2, ChevronLeft, Activity,
   BookOpen, ShieldAlert, Info, AlertTriangle,
@@ -423,4 +423,14 @@ const DrugSearch = () => {
   );
 };
 
-export default DrugSearch;
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-bg-page flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-primary animate-spin" />
+      </div>
+    }>
+      <DrugSearch />
+    </Suspense>
+  );
+}
