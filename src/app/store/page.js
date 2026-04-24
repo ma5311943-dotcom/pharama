@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, Filter, ShoppingCart, Star, ChevronRight, 
-  LayoutGrid, List, Loader2, Package, Activity, 
+import {
+  Search, Filter, ShoppingCart, Star, ChevronRight,
+  LayoutGrid, List, Loader2, Package, Activity,
   ArrowRight, Sparkles, Tag, ShieldCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -102,7 +102,7 @@ const StorePage = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-        
+
         <header className="mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full mb-4">
             <Activity className="w-3 h-3 text-primary animate-pulse" />
@@ -117,19 +117,19 @@ const StorePage = () => {
         </header>
 
         <div className="flex flex-col lg:flex-row gap-10">
-          
+
           <aside className="lg:w-64 shrink-0">
             <div className="sticky top-32 space-y-8">
-              
+
               <div className="relative group">
                 <div className="absolute -inset-1 bg-primary/10 rounded-xl blur-sm opacity-0 group-focus-within:opacity-100 transition-all duration-500" />
                 <div className="relative flex items-center bg-white rounded-xl border border-border-nav p-1 shadow-soft transition-all">
                   <div className="pl-3 pr-2">
                     <Search className="w-4 h-4 text-text-muted" />
                   </div>
-                  <input 
-                    type="text" 
-                    placeholder="Search medicines..." 
+                  <input
+                    type="text"
+                    placeholder="Search medicines..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full bg-transparent border-none focus:ring-0 text-[13px] font-semibold text-text-heading placeholder:text-text-muted/40 py-2"
@@ -208,7 +208,7 @@ const StorePage = () => {
                             {product.category}
                           </span>
                         </div>
-                        
+
                         {product.stock === 0 && (
                           <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center">
                             <span className="bg-red-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg -rotate-12">
@@ -228,15 +228,15 @@ const StorePage = () => {
                             <p className="text-[9px] font-bold text-text-muted uppercase tracking-widest mb-0.5">Price</p>
                             <p className="text-lg font-bold text-text-heading tracking-tight">${product.price.toFixed(2)}</p>
                           </div>
-                          
+
                           {!isAdmin && (
-                            <button 
+                            <button
                               disabled={product.stock === 0}
                               onClick={() => handleAddToCart(product)}
                               className={cn(
                                 "p-3.5 rounded-xl transition-all active:scale-95 flex items-center gap-2 shadow-lg",
-                                product.stock > 0 
-                                  ? "bg-primary text-white hover:bg-primary/90 shadow-primary/20" 
+                                product.stock > 0
+                                  ? "bg-primary text-white hover:bg-primary/90 shadow-primary/20"
                                   : "bg-gray-100 text-gray-400 cursor-not-allowed"
                               )}
                             >
