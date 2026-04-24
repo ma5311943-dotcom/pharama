@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, clearError } from '@/redux/slices/authSlice';
+import { loginUser, verifyOtpAction, clearError } from '@/redux/slices/authSlice';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Mail, Lock, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, Loader2 } from 'lucide-react';
@@ -27,6 +27,9 @@ export default function LoginPage() {
   const iconRefs = useRef([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState('');
+  const [loginEmail, setLoginEmail] = useState('');
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -50,10 +53,32 @@ export default function LoginPage() {
 
     const result = await dispatch(loginUser({ email, password }));
     if (!result.error) {
-      toast.success('Welcome back!');
-      router.push('/');
+      if (result.payload.requireOtp) {
+        toast.success('OTP sent to your email!');
+        setLoginEmail(email);
+        setStep(2);
+      } else {
+        toast.success('Welcome back!');
+        router.push('/');
+      }
     } else {
       toast.error(result.payload || 'Login failed');
+    }
+  };
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    if (!otp) {
+      toast.error('Please enter the OTP');
+      return;
+    }
+
+    const result = await dispatch(verifyOtpAction({ email: loginEmail, otp }));
+    if (!result.error) {
+      toast.success('Verified and logged in!');
+      router.push('/');
+    } else {
+      toast.error(result.payload || 'Verification failed');
     }
   };
 
@@ -184,84 +209,100 @@ export default function LoginPage() {
               </div>
             )}
 
-            <form className="space-y-3.5" onSubmit={handleSubmit}>
-              <div>
-                {/* slightly bigger */}
-                <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">
-                  Email
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@email.com"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between items-center mb-1.5 px-1">
-                  {/* slightly bigger */}
-                  <label className="text-[10px] text-text-muted uppercase tracking-widest">
-                    Password
+            {step === 1 ? (
+              <form className="space-y-3.5" onSubmit={handleSubmit}>
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">
+                    Email
                   </label>
-
-                  {/* slightly bigger */}
-                  <Link href="#" className="text-[9px] text-primary uppercase hover:underline">
-                    Forgot?
-                  </Link>
+                  <div className="relative">
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="name@email.com"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                    />
+                  </div>
                 </div>
 
-                <div className="relative">
-                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
-                  />
+                <div>
+                  <div className="flex justify-between items-center mb-1.5 px-1">
+                    <label className="text-[10px] text-text-muted uppercase tracking-widest">
+                      Password
+                    </label>
+
+                    <Link href="#" className="text-[9px] text-primary uppercase hover:underline">
+                      Forgot?
+                    </Link>
+                  </div>
+
+                  <div className="relative">
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary text-white py-3.5 rounded-xl font-medium text-[13px] hover:bg-primary-hover transition-all shadow-lg shadow-primary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {loading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <>
-                    Sign In
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-primary text-white py-3.5 rounded-xl font-medium text-[13px] hover:bg-primary-hover transition-all shadow-lg shadow-primary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {loading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      Sign In
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </>
+                  )}
+                </button>
+              </form>
+            ) : (
+              <form className="space-y-3.5" onSubmit={handleVerify}>
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">
+                    Enter OTP sent to {loginEmail}
+                  </label>
+                  <div className="relative">
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      placeholder="123456"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                    />
+                  </div>
+                </div>
 
-            <div className="mt-7">
-              {/* slightly bigger */}
-              <p className="text-center font-medium text-[10px] text-text-muted uppercase tracking-[0.2em] mb-4">
-                Or continue with
-              </p>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-primary text-white py-3.5 rounded-xl font-medium text-[13px] hover:bg-primary-hover transition-all shadow-lg shadow-primary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {loading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      Verify and Login
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
 
-              <div className="grid grid-cols-2 gap-2">
-                {['Google', 'GitHub'].map(s => (
-                  <button
-                    key={s}
-                    className="border border-gray-100 py-2.5 rounded-xl hover:bg-gray-50 transition-all text-[10px] text-text-muted uppercase tracking-wider cursor-pointer font-medium"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <p className="mt-7 text-center text-[11px] text-text-muted">
               New here?{' '}

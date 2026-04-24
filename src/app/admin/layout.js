@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import { Pill, Menu } from 'lucide-react';
 import Sidebar from "@/components/admin/Sidebar";
 import { gsap } from 'gsap';
@@ -9,13 +11,29 @@ import { gsap } from 'gsap';
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const mainRef = useRef(null);
+  const router = useRouter();
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    gsap.fromTo(mainRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }
-    );
-  }, []);
+    if (!user) {
+      router.push('/login');
+    } else if (user.role !== 'admin') {
+      router.push('/');
+    }
+  }, [user, router]);
+
+  useEffect(() => {
+    if (user && user.role === 'admin') {
+      gsap.fromTo(mainRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }
+      );
+    }
+  }, [user]);
+
+  if (!user || user.role !== 'admin') {
+    return null;
+  }
 
   return (
     <div className="flex min-h-screen bg-bg-page pt-20">

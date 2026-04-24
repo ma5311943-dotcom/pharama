@@ -21,6 +21,19 @@ export const loginUser = createAsyncThunk('auth/login', async (userData, thunkAP
   }
 });
 
+export const verifyOtpAction = createAsyncThunk('auth/verifyOtp', async (userData, thunkAPI) => {
+  try {
+    const response = await axios.post('/api/auth/verify', userData);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+    }
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message || 'Something went wrong');
+  }
+});
+
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {
     const response = await axios.post('/api/auth/register', userData);
@@ -64,8 +77,10 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        if (action.payload.token) {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -91,6 +106,21 @@ const authSlice = createSlice({
         state.user = action.payload.user;
       })
       .addCase(updateProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(verifyOtpAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(verifyOtpAction.fulfilled, (state, action) => {
+        state.loading = false;
+        if (action.payload.token) {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+        }
+      })
+      .addCase(verifyOtpAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

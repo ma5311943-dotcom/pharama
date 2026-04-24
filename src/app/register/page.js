@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, clearError } from '@/redux/slices/authSlice';
+import { registerUser, verifyOtpAction, clearError } from '@/redux/slices/authSlice';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Mail, Lock, User, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, ShieldCheck, Loader2 } from 'lucide-react';
@@ -28,6 +28,9 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState('');
+  const [registeredEmail, setRegisteredEmail] = useState('');
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -51,10 +54,27 @@ export default function RegisterPage() {
 
     const result = await dispatch(registerUser({ name, email, password }));
     if (!result.error) {
-      toast.success('Account created! Please login.');
-      router.push('/login');
+      toast.success('OTP sent to your email!');
+      setRegisteredEmail(email);
+      setStep(2);
     } else {
       toast.error(result.payload || 'Registration failed');
+    }
+  };
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    if (!otp) {
+      toast.error('Please enter the OTP');
+      return;
+    }
+
+    const result = await dispatch(verifyOtpAction({ email: registeredEmail, otp }));
+    if (!result.error) {
+      toast.success('Account verified and logged in!');
+      router.push('/');
+    } else {
+      toast.error(result.payload || 'Verification failed');
     }
   };
 
@@ -127,74 +147,101 @@ export default function RegisterPage() {
               </div>
             )}
 
-            <form className="space-y-3" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
-                <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="John Doe"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                  />
+            {step === 1 ? (
+              <form className="space-y-3" onSubmit={handleSubmit}>
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="John Doe"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Email</label>
-                <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@email.com"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                  />
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Email</label>
+                  <div className="relative">
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="name@email.com"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Password</label>
-                <div className="relative">
-                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                  />
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Password</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-2 py-1 px-1">
-                <input type="checkbox" required className="w-3.5 h-3.5 rounded border-gray-200 text-secondary focus:ring-secondary cursor-pointer" />
-                <span className="text-[10px] text-text-muted uppercase tracking-widest">
-                  Agree to <Link href="#" className="text-secondary hover:underline">Terms</Link> &amp; <Link href="#" className="text-secondary hover:underline">Privacy</Link>
-                </span>
-              </div>
+                <div className="flex items-center gap-2 py-1 px-1">
+                  <input type="checkbox" required className="w-3.5 h-3.5 rounded border-gray-200 text-secondary focus:ring-secondary cursor-pointer" />
+                  <span className="text-[10px] text-text-muted uppercase tracking-widest">
+                    Agree to <Link href="#" className="text-secondary hover:underline">Terms</Link> &amp; <Link href="#" className="text-secondary hover:underline">Privacy</Link>
+                  </span>
+                </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-secondary text-white py-3.5 rounded-xl font-medium text-[13px] hover:opacity-90 transition-all shadow-lg shadow-secondary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70"
-              >
-                {loading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <>
-                    Create Account
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-secondary text-white py-3.5 rounded-xl font-medium text-[13px] hover:opacity-90 transition-all shadow-lg shadow-secondary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70"
+                >
+                  {loading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      Create Account
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </>
+                  )}
+                </button>
+              </form>
+            ) : (
+              <form className="space-y-3" onSubmit={handleVerify}>
+                <div>
+                  <label className="block text-[10px] text-text-muted uppercase tracking-widest mb-1.5 ml-1">Enter OTP sent to {registeredEmail}</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      placeholder="123456"
+                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-secondary text-white py-3.5 rounded-xl font-medium text-[13px] hover:opacity-90 transition-all shadow-lg shadow-secondary/15 flex items-center justify-center gap-2 mt-1 active:scale-95 cursor-pointer disabled:opacity-70"
+                >
+                  Verify Account
+                </button>
+              </form>
+            )}
 
             <p className="mt-7 text-center text-[11px] text-text-muted">
               Already a member?{' '}
