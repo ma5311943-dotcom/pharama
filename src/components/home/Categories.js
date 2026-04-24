@@ -80,7 +80,7 @@ const Categories = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {categories.map((cat, index) => (
             <motion.div
               key={cat.name}
@@ -91,16 +91,16 @@ const Categories = () => {
             >
               <Link
                 href={cat.href}
-                className="group relative flex items-center gap-5 p-6 rounded-2xl bg-bg-page border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all cursor-pointer overflow-hidden"
+                className="group relative flex items-center gap-4 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-bg-page border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all cursor-pointer overflow-hidden"
               >
-                <div className={`${cat.color} p-4 rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
-                  <cat.icon className="w-7 h-7" />
+                <div className={`${cat.color} p-3 sm:p-4 rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
+                  <cat.icon className="w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-text-heading text-lg mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-text-heading text-base sm:text-lg mb-0.5 sm:mb-1 group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
-                  <p className="text-sm text-text-muted">{cat.count}</p>
+                  <p className="text-xs sm:text-sm text-text-muted">{cat.count}</p>
                 </div>
                 <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
                   <ChevronRight className="w-5 h-5 text-primary" />

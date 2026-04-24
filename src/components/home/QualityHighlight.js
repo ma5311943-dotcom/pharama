@@ -56,7 +56,7 @@ const QualityHighlight = () => {
       </div>
 
       {/* 3D Experience (Using React Three Fiber for 'Best' Performance) */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 hidden md:block">
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
           <Suspense fallback={null}>
             <Scene />
