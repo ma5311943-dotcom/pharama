@@ -60,7 +60,7 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
@@ -91,7 +91,7 @@ const Categories = () => {
             >
               <Link
                 href={cat.href}
-                className="group relative flex items-center gap-4 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-bg-page border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-xl transition-all cursor-pointer overflow-hidden"
+                className="group relative flex items-center gap-4 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-bg-page border border-transparent hover:border-primary/20 hover:bg-bg-card hover:shadow-xl transition-all cursor-pointer overflow-hidden"
               >
                 <div className={`${cat.color} p-3 sm:p-4 rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
                   <cat.icon className="w-6 h-6 sm:w-7 sm:h-7" />

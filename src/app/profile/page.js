@@ -78,15 +78,15 @@ const ProfilePage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Profile Header */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 border border-border-nav shadow-xl mb-6 relative overflow-hidden">
+        <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border-nav shadow-xl mb-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 bg-primary/5 rounded-full -mr-8 -mt-8" />
 
           <div className="relative flex flex-col md:flex-row items-center gap-5">
             <div className="relative shrink-0">
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary border-4 border-white shadow-lg overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary border-4 border-border-nav shadow-lg overflow-hidden">
                 <User className="w-10 h-10" />
               </div>
-              <button className="absolute bottom-0 right-0 p-1.5 bg-white rounded-full shadow-md border border-border-nav hover:bg-gray-50 transition-colors cursor-pointer">
+              <button className="absolute bottom-0 right-0 p-1.5 bg-bg-card rounded-full shadow-md border border-border-nav hover:bg-bg-page transition-colors cursor-pointer">
                 <Camera className="w-3 h-3 text-text-muted" />
               </button>
             </div>
@@ -138,7 +138,7 @@ const ProfilePage = () => {
                 <>
                   <button
                     onClick={() => setIsEditing(false)}
-                    className="p-2.5 bg-bg-page text-text-muted border border-border-nav rounded-xl hover:bg-white transition-all cursor-pointer"
+                    className="p-2.5 bg-bg-page text-text-muted border border-border-nav rounded-xl hover:bg-bg-card transition-all cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -154,7 +154,7 @@ const ProfilePage = () => {
               ) : (
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="flex items-center gap-1.5 bg-bg-page text-text-heading border border-border-nav px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white hover:shadow-soft transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 bg-bg-page text-text-heading border border-border-nav px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-bg-card hover:shadow-soft transition-all cursor-pointer"
                 >
                   <Settings className="w-3.5 h-3.5" />
                   <span>Edit Profile</span>
@@ -180,7 +180,7 @@ const ProfilePage = () => {
               >
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="w-full flex items-center justify-between p-6 bg-white rounded-3xl border border-border-nav shadow-soft hover:shadow-lg transition-all cursor-pointer group"
+                  className="w-full flex items-center justify-between p-6 bg-bg-card rounded-3xl border border-border-nav shadow-soft hover:shadow-lg transition-all cursor-pointer group"
                 >
                   <div className="flex items-center gap-4">
                     <div className={`${item.color} p-3 rounded-2xl text-white`}>
@@ -203,7 +203,7 @@ const ProfilePage = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white rounded-[2rem] p-8 border border-border-nav shadow-soft">
+          <div className="bg-bg-card rounded-[2rem] p-8 border border-border-nav shadow-soft">
             <h3 className="text-xl font-semibold text-text-heading mb-6">
               Recent Activity
             </h3>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const NearbyPharmacy = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-bg-card relative overflow-hidden">
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -79,10 +79,13 @@ const NearbyPharmacy = () => {
           </div>
 
           {/* Map Side */}
-          <div className="lg:w-1/2 w-full h-[500px] rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl relative">
+          <div 
+            className="lg:w-1/2 w-full h-[500px] rounded-[3rem] overflow-hidden border-[12px] border-border-nav shadow-2xl relative"
+            style={{ transform: "translateZ(0)" }}
+          >
             {/* Scroll Lock Overlay */}
             <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-              <div className="bg-white/90 backdrop-blur-md px-6 py-3 rounded-full border border-white shadow-xl text-[10px] font-black uppercase tracking-[0.2em] text-primary select-none">
+              <div className="bg-bg-card/90 backdrop-blur-md px-6 py-3 rounded-full border border-border-nav shadow-xl text-[10px] font-black uppercase tracking-[0.2em] text-primary select-none">
                 Use Ctrl + Scroll to Zoom
               </div>
             </div>
@@ -99,7 +102,7 @@ const NearbyPharmacy = () => {
             ></iframe>
 
             {/* Map Overlay Badge */}
-            <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white shadow-xl flex items-center justify-between">
+            <div className="absolute bottom-8 left-8 right-8 bg-bg-card/90 backdrop-blur-md p-4 rounded-2xl border border-border-nav shadow-xl flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
                   <Navigation className="w-5 h-5" />

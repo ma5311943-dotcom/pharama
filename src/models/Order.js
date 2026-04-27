@@ -24,12 +24,12 @@ const OrderSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    enum: ['JazzCash', 'EasyPaisa'],
+    enum: ['JazzCash', 'EasyPaisa', 'Credit Card'],
     required: true,
   },
   paymentScreenshot: {
-    type: String, // Cloudinary URL or Base64 (User mentioned screenshot)
-    required: true,
+    type: String,
+    required: false,
   },
   status: {
     type: String,

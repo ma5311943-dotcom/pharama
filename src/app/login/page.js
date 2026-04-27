@@ -126,7 +126,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EEF5FF] via-[#F5FFFE] to-[#EEF5FF] flex items-center justify-center p-5 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-hidden">
 
       {/* Ambient light blobs */}
       <div className="absolute top-[-12%] left-[-8%] w-[380px] h-[380px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -144,10 +144,10 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="w-full max-w-[820px] bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,119,182,0.12)] border border-white/80 flex flex-col lg:flex-row overflow-hidden"
+        className="w-full max-w-[820px] bg-bg-card/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,119,182,0.12)] border border-border-nav/80 flex flex-col lg:flex-row overflow-hidden"
       >
         {/* Left visual */}
-        <div className="flex flex-col items-center justify-center bg-gradient-to-br from-primary/5 via-white/30 to-secondary/5 p-8 border-b lg:border-b-0 lg:border-r border-white/50 lg:w-[42%] relative overflow-hidden">
+        <div className="flex flex-col items-center justify-center bg-gradient-to-br from-primary/5 via-bg-page/30 to-secondary/5 p-8 border-b lg:border-b-0 lg:border-r border-border-nav/50 lg:w-[42%] relative overflow-hidden">
 
           {/* Animated Atom / DNA Rings */}
           <div className="relative w-44 h-44 mb-10 flex items-center justify-center" style={{ perspective: '600px' }}>
@@ -182,7 +182,7 @@ export default function LoginPage() {
 
           <div className="mt-7 flex flex-col gap-2.5 w-full">
             {[{ icon: HeartPulse, text: "Real-time health tracking" }, { icon: Stethoscope, text: "Expert consultations" }].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-3 bg-white/60 rounded-xl px-3 py-2 border border-white">
+              <div key={text} className="flex items-center gap-3 bg-bg-card/60 rounded-xl px-3 py-2 border border-border-nav">
                 <Icon className="w-3.5 h-3.5 text-primary shrink-0" />
                 <span className="text-[15px] font-medium text-text-muted">{text}</span>
               </div>
@@ -223,7 +223,7 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@email.com"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
@@ -281,7 +281,7 @@ export default function LoginPage() {
                       value={otp}
                       onChange={(e) => setOtp(e.target.value)}
                       placeholder="123456"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>

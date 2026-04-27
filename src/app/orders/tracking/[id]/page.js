@@ -61,7 +61,7 @@ const OrderTracking = () => {
   if (!order) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-bg-page p-6 text-center">
-        <div className="bg-white p-8 rounded-[2.5rem] shadow-soft border border-border-nav max-w-sm">
+        <div className="bg-bg-card p-8 rounded-[2.5rem] shadow-soft border border-border-nav max-w-sm">
           <Package className="w-16 h-16 text-gray-200 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-text-heading mb-2">Order Not Found</h2>
           <p className="text-text-muted text-sm mb-6">We couldn't find an order with this ID. Please check your link.</p>
@@ -80,7 +80,7 @@ const OrderTracking = () => {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <Link href="/profile" className="p-2 hover:bg-white rounded-full transition-all group">
+          <Link href="/profile" className="p-2 hover:bg-bg-card rounded-full transition-all group">
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           </Link>
           <div className="text-right">
@@ -90,10 +90,10 @@ const OrderTracking = () => {
         </div>
 
         {/* Main Tracking Card */}
-        <div className="bg-white rounded-[2.5rem] border border-border-nav shadow-soft overflow-hidden mb-6 relative">
+        <div className="bg-bg-card rounded-[2.5rem] border border-border-nav shadow-soft overflow-hidden mb-6 relative">
 
           {/* Progress Bar Background */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 z-20">
+          <div className="absolute top-0 left-0 w-full h-1 bg-bg-page z-20">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${(currentStatusIndex / (orderStatuses.length - 1)) * 100}%` }}
@@ -105,7 +105,7 @@ const OrderTracking = () => {
           {/* Status Header - More Dynamic */}
           <div className="p-6 md:p-10 bg-primary/[0.02] border-b border-border-nav flex flex-col md:flex-row md:items-center justify-between gap-6 relative">
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-white rounded-3xl shadow-xl border border-primary/10 flex items-center justify-center text-primary relative overflow-hidden group">
+              <div className="w-20 h-20 bg-bg-card rounded-3xl shadow-xl border border-primary/10 flex items-center justify-center text-primary relative overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-3xl" />
                 <Truck className="w-10 h-10 relative z-10" />
               </div>
@@ -142,7 +142,7 @@ const OrderTracking = () => {
                     {index !== orderStatuses.length - 1 && (
                       <div className={cn(
                         "absolute left-[17px] top-[40px] w-[2px] h-[calc(100%+32px)] z-0 transition-colors duration-500",
-                        index < currentStatusIndex ? "bg-primary" : "bg-gray-100"
+                        index < currentStatusIndex ? "bg-primary" : "bg-bg-page"
                       )} />
                     )}
 
@@ -172,7 +172,7 @@ const OrderTracking = () => {
 
         {/* Order Details Mini-Card */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-3xl border border-border-nav shadow-soft p-6 md:p-8">
+          <div className="bg-bg-card rounded-3xl border border-border-nav shadow-soft p-6 md:p-8">
             <h3 className="text-sm font-bold text-text-heading uppercase tracking-widest mb-6 flex items-center gap-3">
               <Package className="w-4 h-4 text-primary" />
               Package Items
@@ -209,7 +209,7 @@ const OrderTracking = () => {
           </div>
 
           {/* Customer & Payment Info */}
-          <div className="bg-white rounded-3xl border border-border-nav shadow-soft p-6 md:p-8 flex flex-col">
+          <div className="bg-bg-card rounded-3xl border border-border-nav shadow-soft p-6 md:p-8 flex flex-col">
             <h3 className="text-sm font-bold text-text-heading uppercase tracking-widest mb-6 flex items-center gap-3">
               <User className="w-4 h-4 text-primary" />
               Order Information
@@ -249,7 +249,7 @@ const OrderTracking = () => {
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
                     <button 
                       onClick={() => window.open(order.paymentScreenshot, '_blank')}
-                      className="bg-white text-text-heading px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl"
+                      className="bg-bg-card text-text-heading px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl"
                     >
                       View Full Receipt
                     </button>

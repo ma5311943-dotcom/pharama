@@ -6,8 +6,8 @@ import { Pill } from 'lucide-react';
 
 const Preloader = () => {
   const containerRef = useRef(null);
-  const logoRef = useRef(null);
-  const panelsRef = useRef([]);
+  const pillRef = useRef(null);
+  const textRef = useRef(null);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
@@ -21,36 +21,43 @@ const Preloader = () => {
       }
     });
 
-    // 1. Initial State
-    gsap.set(panelsRef.current, { scaleY: 1 });
-    gsap.set(logoRef.current, { opacity: 0, scale: 0.8, filter: "blur(10px)" });
+    // Initial Setup
+    gsap.set(pillRef.current, { y: -200, rotation: -180, scale: 0.5, opacity: 0 });
+    gsap.set(textRef.current, { y: 100, opacity: 0 });
+    gsap.set(containerRef.current, { clipPath: 'circle(150% at 50% 50%)' });
 
-    // 2. Animation Sequence
-    tl.to(logoRef.current, {
+    // 1. Pill drops in, bounces, and spins
+    tl.to(pillRef.current, {
+      y: 0,
+      rotation: 0,
+      scale: 1.2,
       opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power4.out"
+      duration: 1.2,
+      ease: "bounce.out"
     })
-      .to(logoRef.current, {
-        y: -40,
-        opacity: 0,
-        filter: "blur(20px)",
-        duration: 0.8,
-        ease: "power2.in",
-        delay: 0.3
-      })
-      .to(panelsRef.current, {
-        scaleY: 0,
-        skewY: 2,
-        duration: 1.2,
-        stagger: {
-          amount: 0.5,
-          from: "center"
-        },
-        ease: "expo.inOut"
-      }, "-=0.4");
+    // 2. PharmaEase text slides up "in style"
+    .to(textRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power4.out"
+    }, "-=0.6")
+    // 3. Let the user see the logo briefly
+    .to({}, { duration: 0.6 })
+    // 4. Shrink the logo elements quickly
+    .to([pillRef.current, textRef.current], {
+      scale: 0,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "back.in(1.7)"
+    })
+    // 5. Circular reveal to show the website
+    .to(containerRef.current, {
+      clipPath: "circle(0% at 50% 50%)",
+      duration: 1.2,
+      ease: "expo.inOut"
+    });
 
     return () => {
       document.body.style.overflow = 'auto';
@@ -62,28 +69,22 @@ const Preloader = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-bg-page pointer-events-auto"
     >
-      {/* 5-Panel Shutter Background */}
-      <div className="absolute inset-0 flex">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => (panelsRef.current[i] = el)}
-            className="flex-1 bg-[#1B2A3B] origin-top border-x border-white/5"
-          />
-        ))}
-      </div>
-
-      {/* Center Logo Content */}
-      <div ref={logoRef} className="relative z-10 flex flex-col items-center gap-4">
-        <div className="p-5 bg-primary rounded-3xl shadow-[0_0_50px_rgba(var(--color-primary-rgb),0.3)]">
-          <Pill className="w-16 h-16 text-white" />
+      <div className="relative z-10 flex flex-col items-center gap-6">
+        
+        {/* Medicine Moving */}
+        <div ref={pillRef} className="p-5 bg-primary/10 rounded-3xl border border-primary/20 shadow-[0_0_50px_rgba(0,168,232,0.3)]">
+          <Pill className="w-16 h-16 text-primary" />
         </div>
-        <h2 className="text-white text-4xl font-black tracking-[0.2em] uppercase">
-          Pharma<span className="text-primary">Ease</span>
-        </h2>
-        <div className="w-12 h-[2px] bg-primary/50 mt-2" />
+
+        {/* Text Coming in Style */}
+        <div className="overflow-hidden">
+          <h2 ref={textRef} className="text-text-heading text-4xl sm:text-5xl font-black tracking-[0.2em] uppercase">
+            Pharma<span className="text-primary">Ease</span>
+          </h2>
+        </div>
+
       </div>
     </div>
   );

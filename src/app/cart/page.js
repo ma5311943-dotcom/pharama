@@ -61,7 +61,7 @@ const CartPage = () => {
         <div className="flex items-center gap-4 mb-10">
           <Link
             href="/store"
-            className="p-2.5 bg-white rounded-xl border border-border-nav text-text-muted hover:text-primary transition-all shadow-sm"
+            className="p-2.5 bg-bg-card rounded-xl border border-border-nav text-text-muted hover:text-primary transition-all shadow-sm"
           >
             <ChevronLeft className="w-4 h-4" />
           </Link>
@@ -83,7 +83,7 @@ const CartPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="bg-white rounded-2xl p-4 border border-border-nav shadow-sm flex flex-row items-center gap-4 group hover:shadow-md transition-all"
+                    className="bg-bg-card rounded-2xl p-4 border border-border-nav shadow-sm flex flex-row items-center gap-4 group hover:shadow-md transition-all"
                   >
                     <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-border-nav bg-bg-page">
                       <img
@@ -100,14 +100,14 @@ const CartPage = () => {
                         <div className="flex items-center bg-bg-page rounded-lg border border-border-nav p-0.5">
                           <button
                             onClick={() => handleUpdateQuantity(item, -1)}
-                            className="p-1 hover:bg-white rounded-md transition-all text-text-muted hover:text-primary"
+                            className="p-1 hover:bg-bg-card rounded-md transition-all text-text-muted hover:text-primary"
                           >
                             <X className="w-3 h-3 rotate-45" />
                           </button>
                           <span className="w-8 text-center text-[11px] font-bold text-text-heading">{item.quantity}</span>
                           <button
                             onClick={() => handleUpdateQuantity(item, 1)}
-                            className="p-1 hover:bg-white rounded-md transition-all text-text-muted hover:text-primary"
+                            className="p-1 hover:bg-bg-card rounded-md transition-all text-text-muted hover:text-primary"
                           >
                             <X className="w-3 h-3 rotate-0" />
                           </button>
@@ -131,7 +131,7 @@ const CartPage = () => {
 
             {/* Order Summary */}
             <div className="w-full lg:w-[300px] shrink-0 sticky top-24">
-              <div className="bg-white rounded-[1.8rem] p-6 border border-border-nav shadow-soft">
+              <div className="bg-bg-card rounded-[1.8rem] p-6 border border-border-nav shadow-soft">
                 <h3 className="text-base font-bold text-text-heading mb-6">Order Summary</h3>
 
                 <div className="space-y-3.5 mb-6">
@@ -143,7 +143,7 @@ const CartPage = () => {
                     <span>Shipping</span>
                     <span className="text-text-heading">${shipping.toFixed(2)}</span>
                   </div>
-                  <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+                  <div className="pt-4 border-t border-border-nav flex justify-between items-center">
                     <span className="text-[13px] font-bold text-text-heading uppercase tracking-wide">Total</span>
                     <span className="text-xl font-bold text-primary">${total.toFixed(2)}</span>
                   </div>
@@ -168,7 +168,7 @@ const CartPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[2.5rem] p-20 text-center border border-border-nav shadow-soft"
+            className="bg-bg-card rounded-[2.5rem] p-20 text-center border border-border-nav shadow-soft"
           >
             <div className="w-20 h-20 bg-bg-page rounded-full flex items-center justify-center mx-auto mb-6">
               <ShoppingCart className="w-10 h-10 text-gray-300" />

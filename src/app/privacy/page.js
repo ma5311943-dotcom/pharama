@@ -14,9 +14,9 @@ const PrivacyPolicy = () => {
           Back to Home
         </Link>
 
-        <div className="bg-white rounded-[3rem] border border-border-nav shadow-soft overflow-hidden">
+        <div className="bg-bg-card rounded-[3rem] border border-border-nav shadow-soft overflow-hidden">
           <div className="p-10 md:p-16 bg-primary/5 border-b border-border-nav text-center">
-            <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-primary mx-auto mb-6 shadow-soft">
+            <div className="w-20 h-20 bg-bg-card rounded-3xl flex items-center justify-center text-primary mx-auto mb-6 shadow-soft">
               <ShieldCheck className="w-10 h-10" />
             </div>
             <h1 className="text-4xl font-black text-text-heading mb-4 tracking-tight">Privacy Policy</h1>
@@ -72,7 +72,7 @@ const PrivacyPolicy = () => {
               </p>
             </section>
 
-            <div className="pt-10 border-t border-gray-100 text-center">
+            <div className="pt-10 border-t border-border-nav text-center">
               <p className="text-[10px] font-black text-text-muted uppercase tracking-[0.2em] mb-4">Last Updated: April 2026</p>
               <button className="bg-primary text-white px-10 py-4 rounded-2xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all">
                 I Understand & Accept

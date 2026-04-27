@@ -6,7 +6,7 @@ import { Pill, Mail, Phone, MapPin, Globe, Share2, MessageCircle, Send, Info } f
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1B2A3B] text-white pt-12 pb-6">
+    <footer className="bg-bg-page border-t border-border-nav/30 text-white pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10">
@@ -29,7 +29,7 @@ const Footer = () => {
 
             <div className="flex space-x-3">
               {[Globe, Share2, MessageCircle, Info].map((Icon, i) => (
-                <Link key={i} href="#" className="p-2 bg-white/5 rounded-lg hover:bg-primary transition-colors">
+                <Link key={i} href="#" className="p-2 bg-bg-card/5 rounded-lg hover:bg-primary transition-colors">
                   <Icon className="w-4 h-4 text-gray-200" />
                 </Link>
               ))}
@@ -82,7 +82,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-white placeholder:text-gray-400 focus:outline-none focus:border-primary"
+                className="w-full bg-bg-card/5 border border-border-nav/10 rounded-xl px-3 py-2.5 text-white placeholder:text-gray-400 focus:outline-none focus:border-primary"
               />
 
               <button className="absolute right-2 top-1.5 p-2 bg-primary text-white rounded-lg hover:bg-primary-hover">
@@ -94,7 +94,7 @@ const Footer = () => {
         </div>
 
         {/* BOTTOM */}
-        <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-400 text-xs">
+        <div className="pt-6 border-t border-border-nav/10 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-400 text-xs">
           <p>© 2026 PharmaEase. All rights reserved.</p>
 
           <div className="flex gap-4">

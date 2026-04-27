@@ -20,8 +20,8 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
-import { motion, AnimatePresence } from 'framer-motion';
-
+import { motion } from 'framer-motion';
+import { Drawer } from 'vaul';
 const OrdersAdmin = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,25 +32,6 @@ const OrdersAdmin = () => {
     fetchOrders();
   }, []);
 
-  useEffect(() => {
-    if (selectedOrder) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      if (scrollY) window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [selectedOrder]);
 
   const fetchOrders = async () => {
     try {
@@ -120,17 +101,17 @@ const OrdersAdmin = () => {
           <input
             type="text"
             placeholder="Search orders..."
-            className="w-full bg-white border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
+            className="w-full bg-bg-card border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
           />
         </div>
-        <button className="flex items-center justify-center gap-2 bg-white border border-border-nav px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-gray-50 transition-all shadow-soft shrink-0">
+        <button className="flex items-center justify-center gap-2 bg-bg-card border border-border-nav px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-bg-page transition-all shadow-soft shrink-0">
           <Filter className="w-3.5 h-3.5 text-primary" />
           <span>Status</span>
         </button>
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white rounded-2xl border border-border-nav shadow-soft overflow-hidden">
+      <div className="bg-bg-card rounded-2xl border border-border-nav shadow-soft overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse min-w-[900px]">
             <thead>
@@ -276,23 +257,14 @@ const OrdersAdmin = () => {
         </div>
       </div>
 
-      <AnimatePresence>
-        {selectedOrder && (
-          <div className="fixed inset-0 z-[100] overflow-y-auto p-4 flex items-start justify-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedOrder(null)}
-              className="fixed inset-0 bg-text-heading/40 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden my-auto"
-            >
-              <div className="p-5 md:p-8">
+      <Drawer.Root direction="right" open={!!selectedOrder} onOpenChange={(val) => !val && setSelectedOrder(null)}>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm" />
+          <Drawer.Content className="fixed top-2 bottom-2 right-2 w-[calc(100%-16px)] md:top-4 md:bottom-4 md:right-4 md:w-[700px] lg:w-[800px] bg-bg-card shadow-[0_0_40px_rgba(0,0,0,0.1)] rounded-2xl md:rounded-3xl z-[110] flex flex-col focus:outline-none overflow-hidden border border-border-nav">
+            <Drawer.Title className="sr-only">Order Details</Drawer.Title>
+            <Drawer.Description className="sr-only">View details of selected order</Drawer.Description>
+            {selectedOrder && (
+              <div className="p-5 md:p-8 flex-1 overflow-y-auto custom-scrollbar">
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h2 className="text-lg md:text-xl font-bold text-text-heading">Order Details</h2>
@@ -321,7 +293,7 @@ const OrdersAdmin = () => {
                       <h4 className="text-[10px] font-bold uppercase tracking-widest text-text-heading">Products</h4>
                       <div className="space-y-2">
                         {selectedOrder.products.map((item, i) => (
-                          <div key={i} className="flex items-center justify-between p-2.5 bg-white rounded-xl border border-border-nav group">
+                          <div key={i} className="flex items-center justify-between p-2.5 bg-bg-card rounded-xl border border-border-nav group">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 rounded-lg overflow-hidden bg-bg-page border border-border-nav shrink-0">
                                 <img src={item.image} alt="" className="w-full h-full object-cover" />
@@ -408,10 +380,10 @@ const OrdersAdmin = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+            )}
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
     </div>
   );
 };

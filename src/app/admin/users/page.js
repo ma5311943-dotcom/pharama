@@ -80,16 +80,16 @@ const UsersPage = () => {
             placeholder="Search by name or email..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
+            className="w-full bg-bg-card border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
           />
         </div>
-        <div className="bg-white border border-border-nav px-4 py-2.5 rounded-xl font-bold text-[10px] text-primary shadow-soft flex items-center gap-2">
+        <div className="bg-bg-card border border-border-nav px-4 py-2.5 rounded-xl font-bold text-[10px] text-primary shadow-soft flex items-center gap-2">
           <Shield className="w-3.5 h-3.5" />
           {users.length} TOTAL USERS
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-border-nav shadow-soft overflow-hidden">
+      <div className="bg-bg-card rounded-2xl border border-border-nav shadow-soft overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>

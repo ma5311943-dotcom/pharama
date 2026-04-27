@@ -104,7 +104,7 @@ const SettingsPage = () => {
                 "flex items-center gap-3 px-5 py-3.5 rounded-2xl font-bold text-xs transition-all whitespace-nowrap shrink-0",
                 activeTab === tab.label
                   ? "bg-primary text-white shadow-lg shadow-primary/20 scale-[1.02]"
-                  : "bg-white text-text-muted border border-border-nav hover:border-primary/30"
+                  : "bg-bg-card text-text-muted border border-border-nav hover:border-primary/30"
               )}
             >
               <tab.icon className={cn("w-4 h-4", activeTab === tab.label ? "text-white" : "text-primary")} />
@@ -115,7 +115,7 @@ const SettingsPage = () => {
 
         {/* Content Area */}
         <div className="lg:col-span-3">
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 md:p-10 border border-border-nav shadow-soft relative overflow-hidden">
+          <form onSubmit={handleSubmit} className="bg-bg-card rounded-3xl p-6 md:p-10 border border-border-nav shadow-soft relative overflow-hidden">
             <AnimatePresence mode="wait">
               {activeTab === 'General' && (
                 <motion.div
@@ -220,6 +220,25 @@ const SettingsPage = () => {
                             placeholder="03XX XXXXXXX"
                           />
                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-border-nav">
+                    <h3 className="text-sm font-black text-text-heading uppercase tracking-widest mb-6 flex items-center gap-3">
+                      <CreditCard className="w-4 h-4 text-blue-500" />
+                      Global Payment Gateway
+                    </h3>
+                    <div className="p-5 bg-blue-500/5 border border-blue-500/20 rounded-2xl flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
+                        <Lock className="w-5 h-5 text-blue-500" />
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-text-heading uppercase tracking-widest">Stripe Checkout is Active</h4>
+                        <p className="text-[10px] text-text-muted leading-relaxed mt-1">
+                          Your Stripe Secret Key is securely configured via environment variables (<b>.env</b> file). 
+                          Credit Card payments are actively being processed securely without exposing sensitive keys to this dashboard.
+                        </p>
                       </div>
                     </div>
                   </div>

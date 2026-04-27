@@ -47,7 +47,7 @@ const QualityHighlight = () => {
   return (
     <section
       id="quality-section"
-      className="relative min-h-screen py-24 flex items-center bg-[#0b0f19] text-white overflow-hidden"
+      className="relative min-h-screen py-24 flex items-center bg-bg-page text-white overflow-hidden"
     >
       {/* Background Tech Gradient */}
       <div className="absolute inset-0 z-0">
@@ -111,7 +111,7 @@ const QualityHighlight = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="p-8 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 hover:bg-white/[0.06] hover:border-primary/30 transition-all duration-500 group"
+              className="p-8 rounded-[2.5rem] bg-bg-card/[0.03] backdrop-blur-3xl border border-border-nav/10 hover:bg-bg-card/[0.06] hover:border-primary/30 transition-all duration-500 group"
             >
               <div className="w-12 h-12 rounded-2xl bg-primary/20 text-primary flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,119,182,0.3)]">
                 {item.icon}

@@ -115,7 +115,7 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F0FDFA] via-[#F5FFFE] to-[#F0FDFA] flex items-center justify-center p-5 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-hidden">
 
       <div className="absolute top-[-12%] right-[-8%] w-[380px] h-[380px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-12%] left-[-8%] w-[420px] h-[420px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -131,7 +131,7 @@ export default function RegisterPage() {
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="w-full max-w-[820px] bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,180,166,0.12)] border border-white/80 flex flex-col lg:flex-row overflow-hidden"
+        className="w-full max-w-[820px] bg-bg-card/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,180,166,0.12)] border border-border-nav/80 flex flex-col lg:flex-row overflow-hidden"
       >
         {/* Left form */}
         <div className="flex-1 flex flex-col justify-center p-8 md:p-10">
@@ -159,7 +159,7 @@ export default function RegisterPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="John Doe"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@email.com"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
@@ -189,13 +189,13 @@ export default function RegisterPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 py-1 px-1">
-                  <input type="checkbox" required className="w-3.5 h-3.5 rounded border-gray-200 text-secondary focus:ring-secondary cursor-pointer" />
+                  <input type="checkbox" required className="w-3.5 h-3.5 rounded border-border-nav text-secondary focus:ring-secondary cursor-pointer" />
                   <span className="text-[10px] text-text-muted uppercase tracking-widest">
                     Agree to <Link href="#" className="text-secondary hover:underline">Terms</Link> &amp; <Link href="#" className="text-secondary hover:underline">Privacy</Link>
                   </span>
@@ -228,7 +228,7 @@ export default function RegisterPage() {
                       value={otp}
                       onChange={(e) => setOtp(e.target.value)}
                       placeholder="123456"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-white transition-all"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl pl-10 pr-3 py-3 text-[13px] focus:outline-none focus:border-secondary focus:bg-bg-card transition-all"
                     />
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export default function RegisterPage() {
         </div>
 
         {/* Right visual */}
-        <div className="flex flex-col items-center justify-center bg-gradient-to-bl from-secondary/5 via-white/30 to-primary/5 p-8 border-t lg:border-t-0 lg:border-l border-white/50 lg:w-[42%] relative overflow-hidden order-first lg:order-last">
+        <div className="flex flex-col items-center justify-center bg-gradient-to-bl from-secondary/5 via-bg-page/30 to-primary/5 p-8 border-t lg:border-t-0 lg:border-l border-border-nav/50 lg:w-[42%] relative overflow-hidden order-first lg:order-last">
 
           {/* Atom animation */}
           <div className="relative w-44 h-44 mb-10 flex items-center justify-center" style={{ perspective: '600px' }}>
@@ -279,7 +279,7 @@ export default function RegisterPage() {
 
           <div className="mt-7 flex flex-col gap-2.5 w-full">
             {[{ icon: ShieldCheck, text: "Verified medicines only" }, { icon: Stethoscope, text: "Expert pharmacist support" }].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-3 bg-white/60 rounded-xl px-3 py-2 border border-white">
+              <div key={text} className="flex items-center gap-3 bg-bg-card/60 rounded-xl px-3 py-2 border border-border-nav">
                 <Icon className="w-3.5 h-3.5 text-secondary shrink-0" />
                 <span className="text-[15px] font-medium text-text-muted">{text}</span>
               </div>

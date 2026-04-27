@@ -7,6 +7,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ShoppingBag, Upload, ShieldCheck, Search } from 'lucide-react';
 import { useSelector } from 'react-redux';
+import Hero3DScene from './Hero3DScene';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,36 +17,9 @@ const Hero = () => {
   const { user } = useSelector((state) => state.auth);
   const isAdmin = user?.role === 'admin';
   const heroRef = useRef(null);
-  const tabletsRef = useRef([]);
   const contentRef = useRef(null);
 
-  // ✅ FIX: safe random positions (no hydration mismatch)
-  const [tabletStyles, setTabletStyles] = React.useState([]);
-
   useEffect(() => {
-    // generate positions ONLY on client
-    setTabletStyles(
-      Array.from({ length: 6 }).map(() => ({
-        top: `${20 + Math.random() * 60}%`,
-        left: `${10 + Math.random() * 80}%`,
-      }))
-    );
-
-    // Floating tablets motion
-    tabletsRef.current.forEach((el, i) => {
-      if (!el) return;
-
-      gsap.to(el, {
-        y: "random(-50, 50)",
-        x: "random(-50, 50)",
-        rotation: "random(-180, 180)",
-        duration: "random(6, 10)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: i * 0.4
-      });
-    });
 
     gsap.to(contentRef.current, {
       opacity: 0,
@@ -67,22 +41,8 @@ const Hero = () => {
       id="hero-section"
     >
 
-      {/* Floating tablets (FIXED) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {tabletStyles.map((style, i) => (
-          <img
-            key={i}
-            ref={el => tabletsRef.current[i] = el}
-            src="/assets/tablets.png"
-            alt="Floating Tablet"
-            className="absolute w-16 h-16 opacity-40 grayscale-0"
-            style={{
-              top: style.top,
-              left: style.left,
-            }}
-          />
-        ))}
-      </div>
+      {/* Real 3D Floating Pills Background */}
+      <Hero3DScene />
 
       {/* CONTENT */}
       <div className="max-w-6xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 w-full">
@@ -129,7 +89,7 @@ const Hero = () => {
                 {!isAdmin && (
                   <Link
                     href="/cart"
-                    className="flex items-center gap-2 bg-white text-text-heading border border-border-nav px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl font-bold text-base sm:text-lg hover:bg-gray-50 transition-all hover:-translate-y-1 active:scale-95"
+                    className="flex items-center gap-2 bg-bg-card text-text-heading border border-border-nav px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl font-bold text-base sm:text-lg hover:bg-bg-page transition-all hover:-translate-y-1 active:scale-95"
                   >
                     <Upload className="w-5 h-5 text-primary" />
                     Check Cart
@@ -145,11 +105,11 @@ const Hero = () => {
 
           {/* mobile fallback */}
           <div className="lg:hidden mt-12 flex justify-center w-full relative">
-            <div className="w-full max-w-[220px]">
+            <div className="w-full max-w-[220px] bg-white rounded-3xl p-4 shadow-[0_0_30px_rgba(255,165,0,0.2)]">
               <img
                 src="/assets/brufen.png"
                 alt="Brufen"
-                className="w-full h-auto drop-shadow-[0_25px_25px_rgba(255,165,0,0.2)]"
+                className="w-full h-auto"
               />
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10" />

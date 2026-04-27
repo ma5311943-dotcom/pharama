@@ -47,7 +47,7 @@ const FeaturedProducts = () => {
             <Loader2 className="w-10 h-10 animate-spin text-primary" />
           </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-border-nav">
+          <div className="text-center py-20 bg-bg-card rounded-3xl border border-dashed border-border-nav">
              <p className="text-text-muted font-bold">No products available at the moment.</p>
           </div>
         ) : (

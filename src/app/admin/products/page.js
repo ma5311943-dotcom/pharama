@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
-import { motion, AnimatePresence } from 'framer-motion';
-
+import { motion } from 'framer-motion';
+import { Drawer } from 'vaul';
 const ProductsAdmin = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,16 +65,7 @@ const ProductsAdmin = () => {
     }
   };
 
-  useEffect(() => {
-    if (isModalOpen || isSearchOverlayOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isModalOpen, isSearchOverlayOpen]);
+
 
   useEffect(() => {
     fetchProducts();
@@ -229,17 +220,17 @@ const ProductsAdmin = () => {
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full bg-white border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
+            className="w-full bg-bg-card border border-border-nav rounded-xl py-2.5 pl-9 pr-4 focus:outline-none focus:border-primary shadow-soft text-xs font-medium"
           />
         </div>
-        <button className="flex items-center justify-center gap-2 bg-white border border-border-nav px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-gray-50 transition-all shadow-soft shrink-0 cursor-pointer">
+        <button className="flex items-center justify-center gap-2 bg-bg-card border border-border-nav px-4 py-2.5 rounded-xl font-bold text-xs hover:bg-bg-page transition-all shadow-soft shrink-0 cursor-pointer">
           <Filter className="w-3.5 h-3.5 text-primary" />
           <span>Filters</span>
         </button>
       </div>
 
       {/* Table Container */}
-      <div className="bg-white rounded-2xl border border-border-nav shadow-soft overflow-hidden">
+      <div className="bg-bg-card rounded-2xl border border-border-nav shadow-soft overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
@@ -279,7 +270,7 @@ const ProductsAdmin = () => {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-[9px] font-bold text-text-body bg-gray-100 px-2 py-0.5 rounded-full">
+                      <span className="text-[9px] font-bold text-text-body bg-bg-page px-2 py-0.5 rounded-full">
                         {product.category}
                       </span>
                     </td>
@@ -330,241 +321,220 @@ const ProductsAdmin = () => {
       </div>
 
       {/* Product Modal (Add/Edit) */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-text-heading/40 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[95vh] flex flex-col"
-            >
-              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto custom-scrollbar">
-                <div className="flex items-center justify-between mb-4 sm:mb-6">
-                  <h2 className="text-base sm:text-lg font-bold text-text-heading">
-                    {editingProduct ? 'Edit Product' : 'Add New Product'}
-                  </h2>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="p-1 sm:p-1.5 hover:bg-bg-page rounded-full transition-all cursor-pointer text-text-muted"
-                  >
-                    <X className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </button>
+      <Drawer.Root direction="right" open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm" />
+          <Drawer.Content className="fixed top-2 bottom-2 right-2 w-[calc(100%-16px)] md:top-4 md:bottom-4 md:right-4 md:w-[500px] bg-bg-card shadow-[0_0_40px_rgba(0,0,0,0.1)] rounded-2xl md:rounded-3xl z-[110] flex flex-col focus:outline-none overflow-hidden border border-border-nav">
+            <Drawer.Title className="sr-only">{editingProduct ? 'Edit Product' : 'Add New Product'}</Drawer.Title>
+            <Drawer.Description className="sr-only">Add or edit product details</Drawer.Description>
+            <div className="p-4 sm:p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <h2 className="text-base sm:text-lg font-bold text-text-heading">
+                  {editingProduct ? 'Edit Product' : 'Add New Product'}
+                </h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-1 sm:p-1.5 hover:bg-bg-page rounded-full transition-all cursor-pointer text-text-muted"
+                >
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-5">
+                  {/* Left Column: Basic Info */}
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Product Name</label>
+                        <button 
+                          type="button"
+                          onClick={() => setIsSearchOverlayOpen(true)}
+                          className="text-[8px] font-black uppercase tracking-widest text-primary hover:underline flex items-center gap-1"
+                        >
+                          <Search className="w-2.5 h-2.5" />
+                          Auto-fill from Database
+                        </button>
+                      </div>
+                      <input
+                        required
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. Paracetamol 500mg"
+                        className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1 sm:space-y-1.5">
+                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Price ($)</label>
+                        <input
+                          required
+                          type="number"
+                          step="0.01"
+                          value={formData.price}
+                          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                          placeholder="0.00"
+                          className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
+                        />
+                      </div>
+                      <div className="space-y-1 sm:space-y-1.5">
+                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Stock</label>
+                        <input
+                          required
+                          type="number"
+                          value={formData.stock}
+                          onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
+                          placeholder="0"
+                          className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Category</label>
+                      <input
+                        required
+                        type="text"
+                        value={formData.category}
+                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                        placeholder="e.g. Pain Relief"
+                        className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Column: Image & Description */}
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Product Image</label>
+                      <div className="relative group h-[115px]">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        />
+                        <div className={cn(
+                          "w-full h-full bg-bg-page border-2 border-dashed border-border-nav rounded-xl flex flex-col items-center justify-center gap-2 transition-all",
+                          formData.image ? "border-primary/50 bg-primary/5" : "hover:bg-primary/5 hover:border-primary/30"
+                        )}>
+                          {uploading ? (
+                            <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                          ) : formData.image ? (
+                            <div className="flex items-center gap-3 px-4">
+                              <div className="w-14 h-14 rounded-lg overflow-hidden border border-primary/20 shrink-0">
+                                <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                              </div>
+                              <div className="flex-grow min-w-0 text-left">
+                                <p className="text-[9px] font-bold text-primary truncate leading-tight">Image Uploaded</p>
+                                <p className="text-[8px] text-text-muted uppercase tracking-tighter mt-0.5">Click to change</p>
+                              </div>
+                            </div>
+                          ) : (
+                            <>
+                              <UploadCloud className="w-5 h-5 text-primary/50" />
+                              <div className="text-center px-2">
+                                <p className="text-[9px] font-bold text-text-heading leading-tight">Drop your image here</p>
+                                <p className="text-[8px] text-text-muted uppercase tracking-tighter">PNG, JPG, WebP</p>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Description</label>
+                      <textarea
+                        rows="2"
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        placeholder="Brief product details..."
+                        className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold resize-none h-[72px]"
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-5">
-                    {/* Left Column: Basic Info */}
-                    <div className="space-y-3 sm:space-y-4">
-                      <div className="space-y-1 sm:space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Product Name</label>
-                          <button 
-                            type="button"
-                            onClick={() => setIsSearchOverlayOpen(true)}
-                            className="text-[8px] font-black uppercase tracking-widest text-primary hover:underline flex items-center gap-1"
-                          >
-                            <Search className="w-2.5 h-2.5" />
-                            Auto-fill from Database
-                          </button>
-                        </div>
-                        <input
-                          required
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="e.g. Paracetamol 500mg"
-                          className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
-                        />
+                <div className="flex justify-end pt-2">
+                  <button
+                    disabled={submitting}
+                    className="w-full md:w-[200px] bg-primary text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+                  >
+                    {submitting ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Saving...</span>
                       </div>
-
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1 sm:space-y-1.5">
-                          <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Price ($)</label>
-                          <input
-                            required
-                            type="number"
-                            step="0.01"
-                            value={formData.price}
-                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                            placeholder="0.00"
-                            className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
-                          />
-                        </div>
-                        <div className="space-y-1 sm:space-y-1.5">
-                          <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Stock</label>
-                          <input
-                            required
-                            type="number"
-                            value={formData.stock}
-                            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                            placeholder="0"
-                            className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-1 sm:space-y-1.5">
-                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Category</label>
-                        <input
-                          required
-                          type="text"
-                          value={formData.category}
-                          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                          placeholder="e.g. Pain Relief"
-                          className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Right Column: Image & Description */}
-                    <div className="space-y-3 sm:space-y-4">
-                      <div className="space-y-1 sm:space-y-1.5">
-                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Product Image</label>
-                        <div className="relative group h-[115px]">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div className={cn(
-                            "w-full h-full bg-bg-page border-2 border-dashed border-border-nav rounded-xl flex flex-col items-center justify-center gap-2 transition-all",
-                            formData.image ? "border-primary/50 bg-primary/5" : "hover:bg-primary/5 hover:border-primary/30"
-                          )}>
-                            {uploading ? (
-                              <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                            ) : formData.image ? (
-                              <div className="flex items-center gap-3 px-4">
-                                <div className="w-14 h-14 rounded-lg overflow-hidden border border-primary/20 shrink-0">
-                                  <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
-                                </div>
-                                <div className="flex-grow min-w-0 text-left">
-                                  <p className="text-[9px] font-bold text-primary truncate leading-tight">Image Uploaded</p>
-                                  <p className="text-[8px] text-text-muted uppercase tracking-tighter mt-0.5">Click to change</p>
-                                </div>
-                              </div>
-                            ) : (
-                              <>
-                                <UploadCloud className="w-5 h-5 text-primary/50" />
-                                <div className="text-center px-2">
-                                  <p className="text-[9px] font-bold text-text-heading leading-tight">Drop your image here</p>
-                                  <p className="text-[8px] text-text-muted uppercase tracking-tighter">PNG, JPG, WebP</p>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-1 sm:space-y-1.5">
-                        <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Description</label>
-                        <textarea
-                          rows="2"
-                          value={formData.description}
-                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                          placeholder="Brief product details..."
-                          className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold resize-none h-[72px]"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end pt-2">
-                    <button
-                      disabled={submitting}
-                      className="w-full md:w-[200px] bg-primary text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
-                    >
-                      {submitting ? (
-                        <div className="flex items-center justify-center gap-2">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Saving...</span>
-                        </div>
-                      ) : (editingProduct ? 'Save Changes' : 'Add Product')}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                    ) : (editingProduct ? 'Save Changes' : 'Add Product')}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
 
       {/* Database Search Overlay */}
-      <AnimatePresence>
-        {isSearchOverlayOpen && (
-          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsSearchOverlayOpen(false)}
-              className="absolute inset-0 bg-text-heading/20 backdrop-blur-md"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-border-nav"
-            >
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xs font-black uppercase tracking-widest text-text-heading">Medical DB Search</h3>
-                  <button onClick={() => setIsSearchOverlayOpen(false)} className="text-text-muted hover:text-primary transition-colors">
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-                
-                <div className="relative mb-4">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted" />
-                  <input 
-                    autoFocus
-                    type="text"
-                    placeholder="Search medicine name..."
-                    className="w-full bg-bg-page border-none rounded-xl py-2.5 pl-9 pr-4 text-[11px] font-bold focus:ring-1 ring-primary/20"
-                    value={dbSearchQuery}
-                    onChange={(e) => {
-                      setDbSearchQuery(e.target.value);
-                      searchDatabase(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div className="space-y-2 max-h-[300px] overflow-y-auto custom-scrollbar pr-1">
-                  {dbLoading && !dbResults.length ? (
-                    <div className="py-8 text-center">
-                      <Loader2 className="w-5 h-5 animate-spin text-primary mx-auto mb-2" />
-                      <p className="text-[9px] font-bold text-text-muted uppercase">Searching database...</p>
-                    </div>
-                  ) : dbResults.length > 0 ? (
-                    dbResults.map((drug) => (
-                      <button
-                        key={drug.rxcui}
-                        onClick={() => autoFillProduct(drug)}
-                        className="w-full text-left p-3 rounded-xl hover:bg-primary/5 border border-transparent hover:border-primary/10 transition-all group"
-                      >
-                        <p className="text-[11px] font-bold text-text-heading group-hover:text-primary">{drug.name}</p>
-                        <p className="text-[8px] text-text-muted uppercase font-medium mt-0.5">ID: {drug.rxcui}</p>
-                      </button>
-                    ))
-                  ) : dbSearchQuery.length > 2 ? (
-                    <p className="py-8 text-center text-[9px] font-bold text-text-muted uppercase">No matches found</p>
-                  ) : (
-                    <p className="py-8 text-center text-[9px] font-bold text-text-muted uppercase">Start typing to search...</p>
-                  )}
-                </div>
+      <Drawer.Root direction="bottom" open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen}>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-md" />
+          <Drawer.Content className="fixed bottom-2 md:bottom-4 left-2 right-2 w-[calc(100%-16px)] md:left-1/2 md:-translate-x-1/2 md:w-[450px] max-h-[85vh] h-auto flex flex-col rounded-2xl md:rounded-3xl bg-bg-card shadow-[0_0_40px_rgba(0,0,0,0.1)] z-[130] focus:outline-none border border-border-nav">
+            <div className="mx-auto w-12 h-1.5 rounded-full bg-gray-300 my-4" />
+            <Drawer.Title className="sr-only">Medical DB Search</Drawer.Title>
+            <Drawer.Description className="sr-only">Search medicine database</Drawer.Description>
+            <div className="p-5 flex-1 overflow-hidden flex flex-col">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-black uppercase tracking-widest text-text-heading">Medical DB Search</h3>
+                <button onClick={() => setIsSearchOverlayOpen(false)} className="text-text-muted hover:text-primary transition-colors">
+                  <X className="w-4 h-4" />
+                </button>
               </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              
+              <div className="relative mb-4 shrink-0">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted" />
+                <input 
+                  autoFocus
+                  type="text"
+                  placeholder="Search medicine name..."
+                  className="w-full bg-bg-page border-none rounded-xl py-2.5 pl-9 pr-4 text-[11px] font-bold focus:ring-1 ring-primary/20"
+                  value={dbSearchQuery}
+                  onChange={(e) => {
+                    setDbSearchQuery(e.target.value);
+                    searchDatabase(e.target.value);
+                  }}
+                />
+              </div>
+
+              <div className="space-y-2 overflow-y-auto custom-scrollbar pr-1 pb-8">
+                {dbLoading && !dbResults.length ? (
+                  <div className="py-8 text-center">
+                    <Loader2 className="w-5 h-5 animate-spin text-primary mx-auto mb-2" />
+                    <p className="text-[9px] font-bold text-text-muted uppercase">Searching database...</p>
+                  </div>
+                ) : dbResults.length > 0 ? (
+                  dbResults.map((drug) => (
+                    <button
+                      key={drug.rxcui}
+                      onClick={() => autoFillProduct(drug)}
+                      className="w-full text-left p-3 rounded-xl hover:bg-primary/5 border border-transparent hover:border-primary/10 transition-all group"
+                    >
+                      <p className="text-[11px] font-bold text-text-heading group-hover:text-primary">{drug.name}</p>
+                      <p className="text-[8px] text-text-muted uppercase font-medium mt-0.5">ID: {drug.rxcui}</p>
+                    </button>
+                  ))
+                ) : dbSearchQuery.length > 2 ? (
+                  <p className="py-8 text-center text-[9px] font-bold text-text-muted uppercase">No matches found</p>
+                ) : (
+                  <p className="py-8 text-center text-[9px] font-bold text-text-muted uppercase">Start typing to search...</p>
+                )}
+              </div>
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
     </div>
   );
 };

@@ -105,7 +105,7 @@ const Team = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-white to-bg-page overflow-hidden">
+    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-bg-card to-bg-page overflow-hidden">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
 
         {/* Header */}
@@ -131,7 +131,7 @@ const Team = () => {
               onMouseMove={e => handleMouseMove(e, idx)}
               onMouseLeave={() => handleMouseLeave(idx)}
               style={{ transition: 'box-shadow 0.3s ease', willChange: 'transform' }}
-              className="group relative rounded-2xl bg-white border border-gray-100 shadow-lg hover:shadow-2xl overflow-hidden cursor-default"
+              className="group relative rounded-2xl bg-bg-card border border-border-nav shadow-lg hover:shadow-2xl overflow-hidden cursor-default"
             >
               {/* Top accent bar */}
               <div className={`h-1 w-full bg-gradient-to-r ${member.accent}`} />
@@ -142,14 +142,14 @@ const Team = () => {
                 {/* Avatar — same w-60 h-60 image size */}
                 <div className="relative mb-4">
                   <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${member.accent} blur-md opacity-40 scale-110`} />
-                  <div className="relative w-60 h-60 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
+                  <div className="relative w-60 h-60 rounded-full overflow-hidden ring-4 ring-border-nav shadow-xl">
                     <img
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover object-center"
                     />
                   </div>
-                  <div className="absolute bottom-1 right-1 bg-white rounded-full p-1.5 shadow-lg border border-gray-100">
+                  <div className="absolute bottom-1 right-1 bg-bg-card rounded-full p-1.5 shadow-lg border border-border-nav">
                     {member.icon}
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const Team = () => {
                 </p>
 
                 {/* Divider */}
-                <div className="w-10 h-px bg-gray-200 mb-4" />
+                <div className="w-10 h-px bg-border-nav mb-4" />
 
                 {/* Achievements */}
                 <ul className="space-y-2 text-left w-full">

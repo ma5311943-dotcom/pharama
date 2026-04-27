@@ -60,16 +60,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       </AnimatePresence>
 
       <aside className={cn(
-        "fixed lg:top-20 inset-y-0 left-0 w-64 bg-[#1B2A3B] text-white flex flex-col border-r border-white/10 z-[70] lg:z-[30] transition-transform duration-300 ease-in-out lg:translate-x-0",
+        "fixed lg:top-20 inset-y-0 left-0 w-64 bg-bg-page text-white flex flex-col border-r border-border-nav/30 z-[70] lg:z-[30] transition-transform duration-300 ease-in-out lg:translate-x-0",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Mobile Header with close button */}
-        <div className="flex items-center justify-between p-4 lg:hidden border-b border-white/5">
+        <div className="flex items-center justify-between p-4 lg:hidden border-b border-border-nav/5">
           <div className="flex items-center gap-2">
             <Pill className="text-primary w-5 h-5" />
             <span className="font-bold text-sm tracking-tight">Admin<span className="text-primary">Ease</span></span>
           </div>
-          <button onClick={() => setIsOpen(false)} className="p-1.5 hover:bg-white/10 rounded-lg transition-colors active:scale-90">
+          <button onClick={() => setIsOpen(false)} className="p-1.5 hover:bg-bg-card/10 rounded-lg transition-colors active:scale-90">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -87,7 +87,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   "flex items-center justify-between p-3.5 rounded-xl transition-all group",
                   isActive
                     ? "bg-primary text-white shadow-lg shadow-primary/10"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                    : "text-gray-400 hover:bg-bg-card/5 hover:text-white"
                 )}
               >
                 <div className="flex items-center gap-3">
@@ -101,7 +101,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </nav>
 
         {/* FOOTER */}
-        <div className="p-4 border-t border-white/5">
+        <div className="p-4 border-t border-border-nav/5">
           <button 
             onClick={handleLogout}
             className="flex items-center gap-3 w-full p-3.5 rounded-xl text-gray-400 hover:bg-red-500/10 hover:text-red-500 transition-all font-medium text-xs cursor-pointer"

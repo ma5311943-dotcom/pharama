@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Plus, Star } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { addItemToCart } from '@/redux/slices/cartSlice';
 import { toast } from 'react-hot-toast';
 
 const ProductCard = ({ product }) => {
+  const cardRef = useRef(null);
   const {
     _id,
     id,
@@ -36,14 +37,33 @@ const ProductCard = ({ product }) => {
     toast.success(`${name} added to cart!`);
   };
 
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    cardRef.current.style.setProperty('--mouse-x', `${x}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="group bg-white rounded-2xl border border-border-nav p-4 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 flex flex-col h-full cursor-pointer"
+      className="group relative bg-bg-card rounded-2xl border border-border-nav p-4 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 flex flex-col h-full cursor-pointer overflow-hidden"
     >
-      <div className="relative aspect-square rounded-xl overflow-hidden bg-bg-page mb-4">
+      {/* Premium Spotlight Effect */}
+      <div 
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl z-0"
+        style={{
+          background: `radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0, 168, 232, 0.12), transparent 40%)`
+        }}
+      />
+      
+      <div className="relative z-10 aspect-square rounded-xl overflow-hidden bg-bg-page mb-4">
         <img
           src={image || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400'}
           alt={name}
@@ -57,19 +77,19 @@ const ProductCard = ({ product }) => {
         {!isAdmin && (
           <button
             onClick={handleAddToCart}
-            className="absolute bottom-2 right-2 p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-white translate-y-2 group-hover:translate-y-0"
+            className="absolute bottom-2 right-2 p-2 bg-bg-card/90 backdrop-blur-md rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-white translate-y-2 group-hover:translate-y-0"
           >
             <Plus className="w-5 h-5" />
           </button>
         )}
         {stock === 0 && (
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px] flex items-center justify-center">
+          <div className="absolute inset-0 bg-bg-card/40 backdrop-blur-[1px] flex items-center justify-center">
             <span className="bg-red-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Out of Stock</span>
           </div>
         )}
       </div>
 
-      <div className="flex-grow">
+      <div className="relative z-10 flex-grow">
         <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">
           {category}
         </div>
@@ -86,7 +106,7 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+      <div className="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-border-nav/30">
         <div>
           <span className="text-xl font-extrabold text-text-heading">${price.toFixed(2)}</span>
           {oldPrice && (

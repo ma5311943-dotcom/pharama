@@ -9,7 +9,7 @@ const PriceCard = () => {
   const { user } = useSelector((state) => state.auth);
   const isAdmin = user?.role === 'admin';
   return (
-    <section id="cta-section" className="relative py-16 lg:py-24 flex items-center bg-white overflow-hidden">
+    <section id="cta-section" className="relative py-16 lg:py-24 flex items-center bg-bg-card overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
         {/* Left Side: Product Display */}
@@ -86,11 +86,11 @@ const PriceCard = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 mb-8">
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-border-nav shadow-sm">
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-bg-card border border-border-nav shadow-sm">
                 <Truck className="w-4 h-4 text-primary" />
                 <span className="font-bold text-text-heading text-[11px] uppercase">Free Delivery</span>
               </div>
-              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-border-nav shadow-sm">
+              <div className="flex items-center gap-2.5 p-3 rounded-xl bg-bg-card border border-border-nav shadow-sm">
                 <Clock className="w-4 h-4 text-primary" />
                 <span className="font-bold text-text-heading text-[11px] uppercase">Express 2hr</span>
               </div>

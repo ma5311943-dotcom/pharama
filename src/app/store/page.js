@@ -123,7 +123,7 @@ const StorePage = () => {
 
               <div className="relative group">
                 <div className="absolute -inset-1 bg-primary/10 rounded-xl blur-sm opacity-0 group-focus-within:opacity-100 transition-all duration-500" />
-                <div className="relative flex items-center bg-white rounded-xl border border-border-nav p-1 shadow-soft transition-all">
+                <div className="relative flex items-center bg-bg-card rounded-xl border border-border-nav p-1 shadow-soft transition-all">
                   <div className="pl-3 pr-2">
                     <Search className="w-4 h-4 text-text-muted" />
                   </div>
@@ -151,7 +151,7 @@ const StorePage = () => {
                         "px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between group",
                         selectedCategory === cat
                           ? "bg-primary text-white shadow-md shadow-primary/20 lg:translate-x-1"
-                          : "bg-white border border-border-nav text-text-body hover:border-primary/30 hover:bg-primary/5 shadow-sm"
+                          : "bg-bg-card border border-border-nav text-text-body hover:border-primary/30 hover:bg-primary/5 shadow-sm"
                       )}
                     >
                       <span>{cat}</span>
@@ -179,7 +179,7 @@ const StorePage = () => {
                 <p className="text-[10px] font-bold text-text-muted uppercase tracking-widest">Compiling Inventory...</p>
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="py-32 text-center bg-white rounded-[3rem] border border-dashed border-border-nav">
+              <div className="py-32 text-center bg-bg-card rounded-[3rem] border border-dashed border-border-nav">
                 <Package className="w-12 h-12 text-gray-200 mx-auto mb-4" />
                 <h3 className="text-base font-bold text-text-heading uppercase tracking-widest">No products found</h3>
                 <p className="text-[11px] text-text-muted font-medium mt-1 uppercase tracking-tighter">Adjust your filters or search terms</p>
@@ -195,7 +195,7 @@ const StorePage = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.4, delay: i * 0.05 }}
-                      className="group bg-white rounded-[2rem] border border-border-nav shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden flex flex-col"
+                      className="group bg-bg-card rounded-[2rem] border border-border-nav shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden flex flex-col"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden bg-bg-page">
                         <img
@@ -204,13 +204,13 @@ const StorePage = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute top-4 left-4 flex flex-col gap-2">
-                          <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-lg text-[9px] font-bold text-primary shadow-sm uppercase">
+                          <span className="px-3 py-1 bg-bg-card/90 backdrop-blur-md rounded-lg text-[9px] font-bold text-primary shadow-sm uppercase">
                             {product.category}
                           </span>
                         </div>
 
                         {product.stock === 0 && (
-                          <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center">
+                          <div className="absolute inset-0 bg-bg-card/60 backdrop-blur-[2px] flex items-center justify-center">
                             <span className="bg-red-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg -rotate-12">
                               Out of Stock
                             </span>
@@ -237,7 +237,7 @@ const StorePage = () => {
                                 "p-3.5 rounded-xl transition-all active:scale-95 flex items-center gap-2 shadow-lg",
                                 product.stock > 0
                                   ? "bg-primary text-white hover:bg-primary/90 shadow-primary/20"
-                                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                  : "bg-bg-page text-gray-400 cursor-not-allowed"
                               )}
                             >
                               <ShoppingCart className="w-4 h-4" />

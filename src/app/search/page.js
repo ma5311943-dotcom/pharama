@@ -174,7 +174,7 @@ const DrugSearch = () => {
             {/* Search Box */}
             <div className="relative group mb-10">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur opacity-20 group-focus-within:opacity-100 transition duration-500" />
-              <div className="relative bg-white rounded-xl border border-border-nav shadow-lg p-1.5 flex items-center transition-all">
+              <div className="relative bg-bg-card rounded-xl border border-border-nav shadow-lg p-1.5 flex items-center transition-all">
                 <div className="px-4">
                   <Search className="w-5 h-5 text-text-muted" />
                 </div>
@@ -194,7 +194,7 @@ const DrugSearch = () => {
                   <button
                     key={ex}
                     onClick={() => { setQuery(ex); searchDrugs(ex); }}
-                    className="px-3 py-1.5 bg-white border border-border-nav rounded-lg text-[10px] font-bold text-text-muted hover:border-primary hover:text-primary transition-all active:scale-95 shadow-sm"
+                    className="px-3 py-1.5 bg-bg-card border border-border-nav rounded-lg text-[10px] font-bold text-text-muted hover:border-primary hover:text-primary transition-all active:scale-95 shadow-sm"
                   >
                     {ex}
                   </button>
@@ -211,7 +211,7 @@ const DrugSearch = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.04 }}
                   onClick={() => loadMedicalDossier(drug)}
-                  className="group bg-white p-4 rounded-2xl border border-border-nav hover:border-primary/30 hover:shadow-lg transition-all cursor-pointer flex items-center justify-between"
+                  className="group bg-bg-card p-4 rounded-2xl border border-border-nav hover:border-primary/30 hover:shadow-lg transition-all cursor-pointer flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-11 h-11 rounded-xl bg-bg-page flex items-center justify-center text-primary group-hover:bg-primary/5 transition-colors shadow-inner">
@@ -249,7 +249,7 @@ const DrugSearch = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
               <button
                 onClick={() => setActiveDrug(null)}
-                className="flex items-center gap-2 px-4 py-2 bg-white border border-border-nav rounded-xl text-[10px] font-bold uppercase tracking-widest text-text-muted hover:text-primary hover:border-primary transition-all active:scale-95 shadow-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-nav rounded-xl text-[10px] font-bold uppercase tracking-widest text-text-muted hover:text-primary hover:border-primary transition-all active:scale-95 shadow-sm"
               >
                 <ChevronLeft className="w-3.5 h-3.5" /> Back to Search
               </button>
@@ -278,7 +278,7 @@ const DrugSearch = () => {
             ) : deepData && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
                 {/* Title Card - Compact */}
-                <div className="p-6 md:p-8 rounded-[2rem] bg-white border border-border-nav shadow-md flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden">
+                <div className="p-6 md:p-8 rounded-[2rem] bg-bg-card border border-border-nav shadow-md flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] rotate-12 scale-[2]">
                     <Stethoscope className="w-32 h-32" />
                   </div>
@@ -290,7 +290,7 @@ const DrugSearch = () => {
                     <div className="flex flex-wrap gap-1.5">
                       {deepData.classes.length > 0 ? deepData.classes.map(c => (
                         <span key={c} className="px-3 py-1 bg-primary/5 text-primary text-[9px] font-bold rounded-lg border border-primary/10 tracking-widest uppercase">{c}</span>
-                      )) : <span className="px-3 py-1 bg-gray-50 text-gray-400 text-[9px] font-bold rounded-lg border border-gray-100 tracking-widest uppercase">General Pharmaceutical</span>}
+                      )) : <span className="px-3 py-1 bg-bg-page text-gray-400 text-[9px] font-bold rounded-lg border border-border-nav tracking-widest uppercase">General Pharmaceutical</span>}
                     </div>
                   </div>
                   <div className="md:w-px h-10 bg-border-nav hidden md:block" />
@@ -307,7 +307,7 @@ const DrugSearch = () => {
                   <div className="md:col-span-8 space-y-6">
 
                     {/* Usage & Purpose */}
-                    <div className="p-6 bg-white rounded-3xl border border-border-nav shadow-sm">
+                    <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <BookOpen className="w-5 h-5 text-primary" />
                         <h3 className="text-[11px] font-bold text-text-heading uppercase tracking-[0.2em]">Usage & Indications</h3>
@@ -339,7 +339,7 @@ const DrugSearch = () => {
                         <LayoutGrid className="w-5 h-5 text-primary" />
                         <h3 className="text-[11px] font-bold text-text-heading uppercase tracking-[0.2em]">Dosage Instructions</h3>
                       </div>
-                      <div className="text-[12px] text-text-body font-medium leading-relaxed bg-white/40 p-5 rounded-xl border border-white/40 shadow-inner">
+                      <div className="text-[12px] text-text-body font-medium leading-relaxed bg-bg-card/40 p-5 rounded-xl border border-border-nav/40 shadow-inner">
                         {deepData.dosage}
                       </div>
                     </div>
@@ -363,7 +363,7 @@ const DrugSearch = () => {
                     </div>
 
                     {/* Clinical Description */}
-                    <div className="p-6 bg-white rounded-3xl border border-border-nav shadow-sm">
+                    <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <Info className="w-5 h-5 text-text-muted" />
                         <h3 className="text-[11px] font-bold text-text-heading uppercase tracking-[0.2em]">Clinical Description</h3>
@@ -376,7 +376,7 @@ const DrugSearch = () => {
                   <div className="md:col-span-4 space-y-6">
 
                     {/* Active Ingredients */}
-                    <div className="p-6 bg-white rounded-3xl border border-border-nav shadow-sm">
+                    <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <FlaskConical className="w-4 h-4 text-primary" />
                         <h4 className="text-[9px] font-bold text-text-muted uppercase tracking-widest">Constituents</h4>
@@ -397,7 +397,7 @@ const DrugSearch = () => {
                     </div>
 
                     {/* Storage */}
-                    <div className="p-6 bg-text-heading rounded-3xl text-white shadow-lg">
+                    <div className="p-6 bg-bg-card border border-border-nav rounded-3xl text-text-heading shadow-lg">
                       <h4 className="text-[15px] font-bold  uppercase tracking-widest mb-3">Storage Guidelines</h4>
                       <p className="text-[11px] font-semibold leading-relaxed">{deepData.storage}</p>
                     </div>

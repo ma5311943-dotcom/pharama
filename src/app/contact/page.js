@@ -19,20 +19,13 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
-const floatingIcons = [
-  { Icon: Pill, top: '10%', left: '5%', size: 24, delay: 0 },
-  { Icon: HeartPulse, top: '22%', left: '90%', size: 28, delay: 1 },
-  { Icon: Stethoscope, top: '65%', left: '7%', size: 22, delay: 0.7 },
-  { Icon: Activity, top: '80%', left: '87%', size: 26, delay: 2 },
-  { Icon: Pill, top: '50%', left: '93%', size: 18, delay: 0.4 },
-];
+import Hero3DScene from '@/components/home/Hero3DScene';
 
 export default function ContactPage() {
   const iconRefs = useRef([]);
   const coreRef = useRef(null);
 
   useEffect(() => {
-    // Pulse the core orb
     gsap.to(coreRef.current, {
       scale: 1.15,
       opacity: 0.7,
@@ -42,20 +35,7 @@ export default function ContactPage() {
       ease: "sine.inOut",
     });
 
-    // Floating background icons
-    iconRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.to(el, {
-        y: "random(-20, 20)",
-        x: "random(-12, 12)",
-        rotation: "random(-25, 25)",
-        duration: "random(2.5, 5)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: floatingIcons[i]?.delay || 0,
-      });
-    });
+
   }, []);
 
     const handleSubmit = (e) => {
@@ -67,29 +47,18 @@ export default function ContactPage() {
     };
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#EEF5FF] via-[#F5FFFE] to-[#EEF5FF] flex items-center justify-center p-5 relative overflow-hidden">
+      <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-hidden">
         
-        {/* Ambient light blobs */}
-        <div className="absolute top-[-12%] left-[-8%] w-[380px] h-[380px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-[-12%] right-[-8%] w-[420px] h-[420px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+        <Hero3DScene />
 
-        {/* Floating icons */}
-        {floatingIcons.map(({ Icon, top, left, size }, i) => (
-          <div key={i} ref={el => iconRefs.current[i] = el} className="absolute text-primary/35 pointer-events-none" style={{ top, left }}>
-            <Icon size={size} strokeWidth={1.5} />
-          </div>
-        ))}
-
-        {/* Card */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="w-full max-w-[950px] bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,119,182,0.12)] border border-white/80 flex flex-col lg:flex-row overflow-hidden"
+          className="w-full max-w-[950px] bg-bg-card/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,119,182,0.12)] border border-border-nav/80 flex flex-col lg:flex-row overflow-hidden"
         >
           
-          {/* Left visual (Info Panel) */}
-          <div className="flex flex-col bg-gradient-to-br from-primary/5 via-white/30 to-secondary/5 p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-white/50 lg:w-[38%] relative overflow-hidden">
+          <div className="flex flex-col bg-gradient-to-br from-primary/5 via-bg-page/30 to-secondary/5 p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-border-nav/50 lg:w-[38%] relative overflow-hidden">
             
             <div className="mb-8 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[9px] font-bold mb-4 uppercase tracking-widest">
@@ -111,7 +80,7 @@ export default function ContactPage() {
                 { icon: Clock, title: "Our Hours", val: "Mon-Sun: 24 Hours", sub: "Emergency care" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 group">
-                  <div className="w-9 h-9 rounded-xl bg-white border border-white shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-9 h-9 rounded-xl bg-bg-card border border-border-nav shadow-sm flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     <item.icon className="w-3.5 h-3.5 text-primary" />
                   </div>
                   <div>
@@ -131,7 +100,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right form */}
           <div className="flex-1 flex flex-col justify-center p-8 md:p-10">
             <div className="max-w-[400px] mx-auto w-full">
               <div className="mb-7">
@@ -149,7 +117,7 @@ export default function ContactPage() {
                       type="text"
                       required
                       placeholder="John Doe"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-white transition-all font-medium"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all font-medium"
                     />
                   </div>
                   <div>
@@ -158,7 +126,7 @@ export default function ContactPage() {
                       type="email"
                       required
                       placeholder="name@email.com"
-                      className="w-full bg-gray-50/80 border border-gray-100 rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-white transition-all font-medium"
+                      className="w-full bg-bg-page/80 border border-border-nav rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all font-medium"
                     />
                   </div>
                 </div>
@@ -169,7 +137,7 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="How can we help?"
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-white transition-all font-medium"
+                    className="w-full bg-bg-page/80 border border-border-nav rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all font-medium"
                   />
                 </div>
 
@@ -179,7 +147,7 @@ export default function ContactPage() {
                     rows="3"
                     required
                     placeholder="Your message here..."
-                    className="w-full bg-gray-50/80 border border-gray-100 rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-white transition-all font-medium resize-none"
+                    className="w-full bg-bg-page/80 border border-border-nav rounded-xl px-4 py-2.5 text-[12px] focus:outline-none focus:border-primary focus:bg-bg-card transition-all font-medium resize-none"
                   ></textarea>
                 </div>
 

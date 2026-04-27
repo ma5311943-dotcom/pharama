@@ -45,7 +45,7 @@ export default function AdminLayout({ children }) {
         {!isSidebarOpen && (
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className="lg:hidden fixed top-24 left-4 z-[40] bg-white border border-border-nav text-text-heading p-2.5 rounded-xl shadow-lg hover:bg-gray-50 active:scale-95 transition-all flex items-center gap-2"
+            className="lg:hidden fixed top-24 left-4 z-[40] bg-bg-card border border-border-nav text-text-heading p-2.5 rounded-xl shadow-lg hover:bg-bg-page active:scale-95 transition-all flex items-center gap-2"
           >
             <Menu className="w-5 h-5 text-primary" />
             <span className="text-[10px] font-bold uppercase tracking-tight">Admin Menu</span>

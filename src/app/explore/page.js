@@ -64,7 +64,7 @@ const ExplorePage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="w-full bg-white border-2 border-primary/20 rounded-[2rem] py-6 pl-16 pr-8 text-lg font-medium focus:outline-none focus:border-primary shadow-2xl shadow-primary/10 transition-all"
+              className="w-full bg-bg-card border-2 border-primary/20 rounded-[2rem] py-6 pl-16 pr-8 text-lg font-medium focus:outline-none focus:border-primary shadow-2xl shadow-primary/10 transition-all"
             />
             <button 
               onClick={handleSearch}
@@ -84,7 +84,7 @@ const ExplorePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-white rounded-[2.5rem] p-10 border border-border-nav shadow-soft hover:shadow-2xl transition-all group cursor-pointer"
+              className="bg-bg-card rounded-[2.5rem] p-10 border border-border-nav shadow-soft hover:shadow-2xl transition-all group cursor-pointer"
             >
               <div className={`${item.color} w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-current/20 group-hover:scale-110 transition-transform`}>
                 <item.icon className="w-8 h-8" />
@@ -118,14 +118,14 @@ const ExplorePage = () => {
             <div>
               <h2 className="text-4xl font-extrabold mb-6 leading-tight">Need Professional Advice on Your Medication?</h2>
               <p className="text-white/80 text-lg font-medium mb-10">Our licensed pharmacists are available 24/7 to help you understand your prescription and guide you toward the best healthcare choices.</p>
-              <button className="bg-white text-primary px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all shadow-xl active:scale-95 cursor-pointer">
+              <button className="bg-bg-card text-primary px-10 py-5 rounded-2xl font-bold text-lg hover:bg-bg-page transition-all shadow-xl active:scale-95 cursor-pointer">
                 Consult a Pharmacist
               </button>
             </div>
             <div className="hidden lg:flex justify-end">
-              <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/20">
+              <div className="bg-bg-card/10 backdrop-blur-xl p-8 rounded-[2.5rem] border border-border-nav/20">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-bg-card text-primary flex items-center justify-center">
                     <HeartPulse className="w-6 h-6" />
                   </div>
                   <div>
@@ -144,7 +144,7 @@ const ExplorePage = () => {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-bg-card/5 rounded-full -mr-20 -mt-20 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full -ml-20 -mb-20 blur-3xl" />
         </motion.div>
       </div>

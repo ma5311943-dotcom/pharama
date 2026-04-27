@@ -63,7 +63,7 @@ const WishlistPage = () => {
 
         <div className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-4">
-            <Link href="/store" className="p-3 bg-white rounded-xl border border-border-nav text-text-muted hover:text-primary transition-colors shadow-soft">
+            <Link href="/store" className="p-3 bg-bg-card rounded-xl border border-border-nav text-text-muted hover:text-primary transition-colors shadow-soft">
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <h1 className="text-4xl font-extrabold text-text-heading">My <span className="text-secondary">Wishlist</span></h1>
@@ -90,7 +90,7 @@ const WishlistPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.5, rotate: -5 }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-[2.5rem] border border-border-nav overflow-hidden shadow-soft hover:shadow-2xl transition-all group flex flex-col"
+                  className="bg-bg-card rounded-[2.5rem] border border-border-nav overflow-hidden shadow-soft hover:shadow-2xl transition-all group flex flex-col"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
@@ -101,13 +101,13 @@ const WishlistPage = () => {
                     <div className="absolute top-4 right-4">
                       <button
                         onClick={() => removeItem(item._id)}
-                        className="p-3 bg-white/90 backdrop-blur-md rounded-2xl text-danger hover:bg-danger hover:text-white shadow-xl transition-all cursor-pointer"
+                        className="p-3 bg-bg-card/90 backdrop-blur-md rounded-2xl text-danger hover:bg-danger hover:text-white shadow-xl transition-all cursor-pointer"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
                     <div className="absolute bottom-4 left-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-secondary bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-secondary bg-bg-card/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg">
                         {item.category}
                       </span>
                     </div>
@@ -139,7 +139,7 @@ const WishlistPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[3rem] p-20 text-center border border-border-nav shadow-soft"
+            className="bg-bg-card rounded-[3rem] p-20 text-center border border-border-nav shadow-soft"
           >
             <div className="w-32 h-32 bg-bg-page rounded-full flex items-center justify-center mx-auto mb-8">
               <Heart className="w-16 h-16 text-gray-300" />

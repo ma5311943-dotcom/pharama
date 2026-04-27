@@ -61,12 +61,13 @@ const chartData = {
 
 const chartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: { display: false },
   },
   scales: {
-    y: { beginAtZero: true, grid: { display: false } },
-    x: { grid: { display: false } },
+    y: { beginAtZero: true, grid: { display: false }, ticks: { color: '#a1a1aa' } },
+    x: { grid: { display: false }, ticks: { color: '#a1a1aa' } },
   },
 };
 
@@ -94,22 +95,14 @@ const AdminDashboard = () => {
 
     // GSAP Stagger
     const ctx = gsap.context(() => {
-      gsap.from(".stat-card", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        delay: 0.2
-      });
-      gsap.from(".chart-card", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        delay: 0.5
-      });
+      gsap.fromTo(".stat-card", 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2, clearProps: "all" }
+      );
+      gsap.fromTo(".chart-card", 
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.5, clearProps: "all" }
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -155,7 +148,7 @@ const AdminDashboard = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {dashboardStats.map((stat, i) => (
-          <div key={i} className="stat-card bg-white p-3.5 md:p-4 rounded-2xl border border-border-nav shadow-soft hover:shadow-md transition-all group">
+          <div key={i} className="stat-card bg-bg-card p-3.5 md:p-4 rounded-2xl border border-border-nav shadow-soft hover:shadow-md transition-all group">
             <div className="flex justify-between items-start mb-2">
               <div className="p-2 bg-bg-page rounded-lg group-hover:bg-primary/10 transition-colors">
                 <stat.icon className={`w-4 h-4 ${stat.color}`} />
@@ -173,7 +166,7 @@ const AdminDashboard = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 md:gap-6">
         {/* Main Chart */}
-        <div className="chart-card xl:col-span-2 bg-white p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
+        <div className="chart-card xl:col-span-2 bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-base font-bold text-text-heading">Revenue Growth</h3>
             <select className="bg-bg-page border-none rounded-lg text-[9px] font-bold px-2.5 py-1.5 focus:ring-1 ring-primary/20 cursor-pointer">
@@ -187,7 +180,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Recent Activity / Mini Table */}
-        <div className="chart-card bg-white p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
+        <div className="chart-card bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <div className="flex justify-between items-center mb-5">
             <h3 className="text-base font-bold text-text-heading">Recent Orders</h3>
             <button className="text-[9px] font-bold text-primary hover:underline">View All</button>

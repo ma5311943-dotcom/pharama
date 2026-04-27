@@ -144,7 +144,7 @@ const AboutPage = () => {
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white w-[280px] lg:w-[340px]"
+              className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-border-nav w-[280px] lg:w-[340px]"
             >
               <img
                 src="https://images.unsplash.com/photo-1587854680352-936b22b91030?q=80&w=1200&auto=format&fit=crop"
@@ -168,9 +168,9 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-10 rounded-[2.5rem] border shadow-soft text-center group hover:shadow-2xl hover:bg-primary transition-all duration-500"
+              className="bg-bg-card p-10 rounded-[2.5rem] border shadow-soft text-center group hover:shadow-2xl hover:bg-primary transition-all duration-500"
             >
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6 group-hover:bg-white/20 group-hover:text-white">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6 group-hover:bg-bg-card/20 group-hover:text-white">
                 <stat.icon className="w-8 h-8" />
               </div>
               <div className="text-4xl font-black text-text-heading mb-2 group-hover:text-white">{stat.value}</div>
@@ -194,7 +194,7 @@ const AboutPage = () => {
             <motion.div
               key={i}
               whileHover={{ y: -10 }}
-              className="p-10 bg-white rounded-[2.5rem] shadow-soft hover:shadow-2xl"
+              className="p-10 bg-bg-card rounded-[2.5rem] shadow-soft hover:shadow-2xl"
             >
               <div className={`${value.color} w-14 h-14 rounded-2xl flex items-center justify-center text-white mb-8`}>
                 <value.icon className="w-7 h-7" />

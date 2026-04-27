@@ -29,18 +29,17 @@ const ProductIngredients = () => {
   ];
 
   return (
-    <section id="ingredients-section" className="relative min-h-screen py-24 flex items-center bg-white overflow-hidden">
+    <section id="ingredients-section" className="relative min-h-screen py-24 flex items-center bg-bg-card overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
         {/* Left Side: Premium Visual */}
         <div className="relative hidden lg:flex items-center justify-center h-[550px]">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-[40px] border border-border-nav/30 overflow-hidden shadow-inner">
+          <div className="absolute inset-0 bg-bg-card rounded-[40px] border border-border-nav overflow-hidden shadow-inner">
             <img
               src="/assets/ingredients_bg.png"
               alt="Natural Ingredients"
-              className="w-full h-full object-cover opacity-80 mix-blend-multiply"
+              className="w-full h-full object-cover opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
           </div>
 
           {/* Floating Subtle Icons */}
@@ -71,7 +70,7 @@ const ProductIngredients = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {ingredients.map((item, index) => (
                 <div key={index} className="p-5 rounded-2xl bg-bg-page border border-border-nav/50 hover:shadow-lg transition-all duration-300 group">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-bg-card flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
                   <h3 className="text-base font-bold text-text-heading mb-1">{item.title}</h3>

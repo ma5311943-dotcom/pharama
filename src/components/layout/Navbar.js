@@ -77,7 +77,7 @@ const Navbar = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         scrolled
           ? "glass-nav py-1 shadow-soft"
-          : "bg-white py-2.5 border-b border-border-nav"
+          : "bg-bg-card py-2.5 border-b border-border-nav"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,7 +143,7 @@ const Navbar = () => {
                   {user.role === 'admin' && (
                     <Link
                       href="/admin"
-                      className="hidden lg:flex items-center gap-2 bg-text-heading text-white px-4 py-1.5 rounded-lg font-bold text-[11px] uppercase tracking-wider hover:bg-black transition-all shadow-sm active:scale-95"
+                      className="hidden lg:flex items-center gap-2 bg-primary text-white px-4 py-1.5 rounded-lg font-bold text-[11px] uppercase tracking-wider hover:bg-primary-hover transition-all shadow-sm active:scale-95"
                     >
                       Dashboard
                     </Link>
@@ -240,7 +240,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl z-50 md:hidden p-6 flex flex-col pt-24"
+              className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-bg-card shadow-2xl z-50 md:hidden p-6 flex flex-col pt-24"
               data-lenis-prevent
             >
               <div className="flex items-center justify-between mb-8 md:hidden opacity-0 pointer-events-none">
@@ -259,7 +259,7 @@ const Navbar = () => {
                       "text-base font-bold p-3 rounded-xl transition-all cursor-pointer",
                       pathname === link.href
                         ? "bg-primary/10 text-primary"
-                        : "text-text-body hover:bg-gray-50"
+                        : "text-text-body hover:bg-bg-page"
                     )}
                   >
                     {link.name}
@@ -272,7 +272,7 @@ const Navbar = () => {
                       "text-base font-bold p-3 rounded-xl transition-all cursor-pointer",
                       pathname === (user.role === 'admin' ? '/admin/orders' : '/profile/orders')
                         ? "bg-primary/10 text-primary"
-                        : "text-text-body hover:bg-gray-50"
+                        : "text-text-body hover:bg-bg-page"
                     )}
                   >
                     {user.role === 'admin' ? 'Placed Orders' : 'My Orders'}
@@ -281,7 +281,7 @@ const Navbar = () => {
 
               </div>
 
-              <div className="mt-auto pt-6 border-t border-gray-100 flex flex-col gap-3">
+              <div className="mt-auto pt-6 border-t border-border-nav flex flex-col gap-3">
                 {mounted && (
                   user ? (
                     <div className="flex items-center gap-3 pl-2 border-l-2 border-primary/20">
@@ -320,7 +320,7 @@ const Navbar = () => {
                     <div className="flex flex-col gap-2">
                       <Link
                         href="/login"
-                        className="w-full flex items-center justify-center gap-2 bg-white border border-border-nav text-text-heading py-3.5 rounded-xl font-bold text-sm cursor-pointer"
+                        className="w-full flex items-center justify-center gap-2 bg-bg-card border border-border-nav text-text-heading py-3.5 rounded-xl font-bold text-sm cursor-pointer"
                       >
                         Login
                       </Link>

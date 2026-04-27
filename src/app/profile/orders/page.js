@@ -47,7 +47,7 @@ const MyOrders = () => {
       case 'Dispatched': return { icon: Truck, color: 'text-primary', bg: 'bg-primary/5' };
       case 'Delivered': return { icon: CheckCircle2, color: 'text-green-600', bg: 'bg-green-50' };
       case 'Cancelled': return { icon: XCircle, color: 'text-red-500', bg: 'bg-red-50' };
-      default: return { icon: Package, color: 'text-gray-500', bg: 'bg-gray-50' };
+      default: return { icon: Package, color: 'text-gray-500', bg: 'bg-bg-page' };
     }
   };
 
@@ -63,14 +63,14 @@ const MyOrders = () => {
     <div className="min-h-screen bg-bg-page pt-28 pb-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/profile" className="p-2 hover:bg-white rounded-full transition-all">
+          <Link href="/profile" className="p-2 hover:bg-bg-card rounded-full transition-all">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <h1 className="text-3xl font-bold text-text-heading">My Orders</h1>
         </div>
 
         {orders.length === 0 ? (
-          <div className="bg-white rounded-[2.5rem] p-20 text-center border border-border-nav shadow-soft">
+          <div className="bg-bg-card rounded-[2.5rem] p-20 text-center border border-border-nav shadow-soft">
             <Package className="w-16 h-16 text-gray-200 mx-auto mb-4" />
             <h2 className="text-xl font-bold text-text-heading mb-2">No orders yet</h2>
             <p className="text-text-muted text-sm mb-8">You haven't placed any orders yet. Start shopping now!</p>
@@ -87,7 +87,7 @@ const MyOrders = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   key={order._id}
-                  className="bg-white rounded-[2rem] border border-border-nav shadow-soft overflow-hidden group hover:shadow-xl transition-all"
+                  className="bg-bg-card rounded-[2rem] border border-border-nav shadow-soft overflow-hidden group hover:shadow-xl transition-all"
                 >
                   <div className="p-6 md:p-8">
                     <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
@@ -134,7 +134,7 @@ const MyOrders = () => {
                       </div>
                       <Link
                         href={`/orders/tracking/${order._id}`}
-                        className="flex items-center gap-2 bg-text-heading text-white px-6 py-3 rounded-xl font-bold text-xs hover:bg-black transition-all active:scale-95 shadow-lg shadow-black/10"
+                        className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold text-xs hover:bg-primary-hover transition-all active:scale-95 shadow-lg shadow-black/10"
                       >
                         Track Order
                         <ChevronRight className="w-4 h-4" />

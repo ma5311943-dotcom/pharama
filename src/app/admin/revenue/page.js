@@ -66,21 +66,14 @@ const RevenuePage = () => {
   useEffect(() => {
     if (!loading) {
       const ctx = gsap.context(() => {
-        gsap.from(".stat-card", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out"
-        });
-        gsap.from(".chart-card", {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          delay: 0.3
-        });
+        gsap.fromTo(".stat-card", 
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", clearProps: "all" }
+        );
+        gsap.fromTo(".chart-card", 
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out", delay: 0.3, clearProps: "all" }
+        );
       }, containerRef);
       return () => ctx.revert();
     }
@@ -140,8 +133,9 @@ const RevenuePage = () => {
       {
         label: 'Revenue Growth',
         data: statsData?.dailyRevenue.map(d => d.amount).slice(-6) || [],
-        backgroundColor: '#00B4A6',
+        backgroundColor: '#00a8e8',
         borderRadius: 8,
+        maxBarThickness: 40,
       },
     ],
   };
@@ -159,7 +153,7 @@ const RevenuePage = () => {
             <select
               value={range}
               onChange={(e) => setRange(e.target.value)}
-              className="appearance-none bg-white border border-border-nav pl-9 pr-8 py-2 rounded-xl font-bold text-[10px] hover:bg-gray-50 transition-all shadow-soft cursor-pointer focus:outline-none focus:ring-1 ring-primary/20"
+              className="appearance-none bg-bg-card border border-border-nav pl-9 pr-8 py-2 rounded-xl font-bold text-[10px] hover:bg-bg-page transition-all shadow-soft cursor-pointer focus:outline-none focus:ring-1 ring-primary/20"
             >
               <option value="7">Last 7 Days</option>
               <option value="30">Last 30 Days</option>
@@ -185,14 +179,14 @@ const RevenuePage = () => {
           { label: 'Total Revenue', value: `$${totalRev.toLocaleString()}`, change: '+20.1%', icon: DollarSign, color: 'text-primary' },
           { label: 'Avg Order', value: `$${avgOrder.toFixed(2)}`, change: '-2.4%', icon: CreditCard, color: 'text-orange-500' },
         ].map((stat, i) => (
-          <div key={i} className="stat-card bg-white p-4 md:p-5 rounded-2xl border border-border-nav shadow-soft hover:shadow-md transition-all group">
+          <div key={i} className="stat-card bg-bg-card p-4 md:p-5 rounded-2xl border border-border-nav shadow-soft hover:shadow-md transition-all group">
             <div className="flex justify-between items-start mb-3">
               <div className="p-2.5 bg-bg-page rounded-xl group-hover:bg-primary/5 transition-colors">
                 <stat.icon className={`w-5 h-5 ${stat.color}`} />
               </div>
               <div className={cn(
                 "flex items-center gap-0.5 text-[9px] font-bold px-2 py-0.5 rounded-full",
-                stat.change.startsWith('+') ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+                stat.change.startsWith('+') ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400"
               )}>
                 {stat.change}
                 {stat.change.startsWith('+') ? <ArrowUpRight className="w-2 h-2" /> : <ArrowDownRight className="w-2 h-2" />}
@@ -206,17 +200,17 @@ const RevenuePage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Charts */}
-        <div className="chart-card bg-white p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
+        <div className="chart-card bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <h3 className="text-base font-bold text-text-heading mb-5">Revenue Over Time</h3>
           <div className="h-[240px] md:h-[280px]">
-            <Line data={lineData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }} />
+            <Line data={lineData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#a1a1aa' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#a1a1aa' } } } }} />
           </div>
         </div>
 
-        <div className="chart-card bg-white p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
+        <div className="chart-card bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <h3 className="text-base font-bold text-text-heading mb-5">Growth History</h3>
           <div className="h-[240px] md:h-[280px]">
-            <Bar data={barData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }} />
+            <Bar data={barData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: '#a1a1aa' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#a1a1aa' } } } }} />
           </div>
         </div>
       </div>
