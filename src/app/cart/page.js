@@ -102,14 +102,14 @@ const CartPage = () => {
                             onClick={() => handleUpdateQuantity(item, -1)}
                             className="p-1 hover:bg-bg-card rounded-md transition-all text-text-muted hover:text-primary"
                           >
-                            <X className="w-3 h-3 rotate-45" />
+                            <Minus className="w-3 h-3" />
                           </button>
                           <span className="w-8 text-center text-[11px] font-bold text-text-heading">{item.quantity}</span>
                           <button
                             onClick={() => handleUpdateQuantity(item, 1)}
                             className="p-1 hover:bg-bg-card rounded-md transition-all text-text-muted hover:text-primary"
                           >
-                            <X className="w-3 h-3 rotate-0" />
+                            <Plus className="w-3 h-3" />
                           </button>
                         </div>
                         <button

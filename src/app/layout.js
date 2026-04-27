@@ -24,7 +24,6 @@ import Preloader from "@/components/shared/Preloader";
 import SmoothScroll from "@/components/shared/SmoothScroll";
 import AIAssistant from "@/components/ui/AIAssistant";
 import CartSync from "@/components/shared/CartSync";
-import LiveNotifications from "@/components/ui/LiveNotifications";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -45,7 +44,6 @@ export default function RootLayout({ children }) {
           <CustomCursor />
           <Preloader />
           <Toaster position="top-center" reverseOrder={false} />
-          <LiveNotifications />
           {hideShell ? (
             <main id="main-wrapper" className="h-full">
               {children}

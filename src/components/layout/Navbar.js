@@ -240,16 +240,9 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-bg-card shadow-2xl z-50 md:hidden p-6 flex flex-col pt-24"
+              className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-bg-card shadow-2xl z-50 md:hidden p-6 flex flex-col pt-20"
               data-lenis-prevent
             >
-              <div className="flex items-center justify-between mb-8 md:hidden opacity-0 pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <Pill className="text-primary w-6 h-6" />
-                  <span className="text-xl font-bold">PharmaEase</span>
-                </div>
-              </div>
-
               <div className="flex flex-col space-y-1">
                 {navLinks.map((link) => (
                   <Link
