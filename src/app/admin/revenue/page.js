@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
@@ -142,7 +142,7 @@ const RevenuePage = () => {
 
   return (
     <div ref={containerRef} className="space-y-4 md:space-y-6">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-text-heading">Revenue Analytics</h1>
@@ -172,7 +172,7 @@ const RevenuePage = () => {
         </div>
       </div>
 
-      {/* Stats */}
+      {}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {[
           { label: 'Net Profit (Est.)', value: `$${(totalRev * 0.8).toLocaleString()}`, change: '+12.5%', icon: TrendingUp, color: 'text-green-500' },
@@ -199,7 +199,7 @@ const RevenuePage = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-        {/* Charts */}
+        {}
         <div className="chart-card bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <h3 className="text-base font-bold text-text-heading mb-5">Revenue Over Time</h3>
           <div className="h-[240px] md:h-[280px]">

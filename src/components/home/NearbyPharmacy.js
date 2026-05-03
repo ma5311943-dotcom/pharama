@@ -7,13 +7,13 @@ import { motion } from "framer-motion";
 const NearbyPharmacy = () => {
   return (
     <section className="py-24 bg-bg-card relative overflow-hidden">
-      {/* Abstract Background Shapes */}
+      {}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
-          {/* Info Side */}
+          {}
           <div className="lg:w-1/2 space-y-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -78,12 +78,12 @@ const NearbyPharmacy = () => {
 
           </div>
 
-          {/* Map Side */}
+          {}
           <div 
             className="lg:w-1/2 w-full h-[500px] rounded-[3rem] overflow-hidden border-[12px] border-border-nav shadow-2xl relative"
             style={{ transform: "translateZ(0)" }}
           >
-            {/* Scroll Lock Overlay */}
+            {}
             <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
               <div className="bg-bg-card/90 backdrop-blur-md px-6 py-3 rounded-full border border-border-nav shadow-xl text-[10px] font-black uppercase tracking-[0.2em] text-primary select-none">
                 Use Ctrl + Scroll to Zoom
@@ -91,7 +91,7 @@ const NearbyPharmacy = () => {
             </div>
 
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d115681.29592731265!2d67.01819!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy!5e0!3m2!1sen!2s!4v1713958000000!5m2!1sen!2s"
+              src="https://maps.google.com/maps?q=Karachi&t=&z=13&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -101,7 +101,7 @@ const NearbyPharmacy = () => {
               className="grayscale-[0.2] contrast-[1.1] brightness-[1.05] relative z-10"
             ></iframe>
 
-            {/* Map Overlay Badge */}
+            {}
             <div className="absolute bottom-8 left-8 right-8 bg-bg-card/90 backdrop-blur-md p-4 rounded-2xl border border-border-nav shadow-xl flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">

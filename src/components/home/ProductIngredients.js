@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -32,7 +32,7 @@ const ProductIngredients = () => {
     <section id="ingredients-section" className="relative min-h-screen py-24 flex items-center bg-bg-card overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-        {/* Left Side: Premium Visual */}
+        {}
         <div className="relative hidden lg:flex items-center justify-center h-[550px]">
           <div className="absolute inset-0 bg-bg-card rounded-[40px] border border-border-nav overflow-hidden shadow-inner">
             <img
@@ -42,13 +42,13 @@ const ProductIngredients = () => {
             />
           </div>
 
-          {/* Floating Subtle Icons */}
+          {}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <Leaf className="absolute top-[15%] left-[10%] w-8 h-8 text-green-500/40" />
             <Zap className="absolute bottom-[25%] right-[15%] w-6 h-6 text-primary/40" />
           </div>
 
-          {/* Glowing base for the traveling bottle */}
+          {}
           <div className="absolute bottom-[10%] w-40 h-8 bg-primary/10 rounded-[100%] blur-xl" />
         </div>
 

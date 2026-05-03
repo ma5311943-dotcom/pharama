@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ const Footer = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10">
 
-          {/* BRAND */}
+          {}
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="bg-primary p-2 rounded-xl">
@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* QUICK LINKS */}
+          {}
           <div>
             <h4 className="text-base text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-300">
@@ -48,7 +48,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* CUSTOMER SERVICE */}
+          {}
           <div>
             <h4 className="text-base text-white font-semibold mb-4">Customer Service</h4>
 
@@ -70,7 +70,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* NEWSLETTER */}
+          {}
           <div className="col-span-2 lg:col-span-1">
             <h4 className="text-base text-white font-semibold mb-4">Newsletter</h4>
 
@@ -93,7 +93,7 @@ const Footer = () => {
 
         </div>
 
-        {/* BOTTOM */}
+        {}
         <div className="pt-6 border-t border-border-nav/10 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-400 text-xs">
           <p>© 2026 PharmaEase. All rights reserved.</p>
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -12,13 +12,13 @@ const PriceCard = () => {
     <section id="cta-section" className="relative py-16 lg:py-24 flex items-center bg-bg-card overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-        {/* Left Side: Product Display */}
+        {}
         <div className="relative h-[350px] lg:h-[500px] bg-bg-page rounded-[3rem] border border-border-nav/50 shadow-inner flex items-center justify-center overflow-hidden group">
-          {/* Decorative Background */}
+          {}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
 
-          {/* Product Image with Fast Infinite Movement */}
+          {}
           <motion.div
             animate={{
               y: [0, -60, 0],
@@ -39,13 +39,13 @@ const PriceCard = () => {
             />
           </motion.div>
 
-          {/* Brand Watermark */}
+          {}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-0">
             <span className="text-primary font-black text-6xl opacity-[0.03] select-none uppercase tracking-tighter">PharmaEase</span>
           </div>
         </div>
 
-        {/* Right Side: Compact Info */}
+        {}
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

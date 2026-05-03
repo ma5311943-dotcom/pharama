@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          // Just take the first 4 for featured
+
           setProducts(data.data.slice(0, 4));
         }
       })

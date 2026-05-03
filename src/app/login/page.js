@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, verifyOtpAction, clearError } from '@/redux/slices/authSlice';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Mail, Lock, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, Loader2 } from 'lucide-react';
+import { Mail, Lock, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, Loader2, ScanFace } from 'lucide-react';
 import toast from 'react-hot-toast';
+import FaceAuth from '@/components/auth/FaceAuth';
 
 const floatingIcons = [
   { Icon: Pill, top: '10%', left: '5%', size: 24, delay: 0 },
@@ -30,6 +31,7 @@ export default function LoginPage() {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
+  const [showFaceAuth, setShowFaceAuth] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -83,7 +85,7 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    // Pulse the core orb
+
     gsap.to(coreRef.current, {
       scale: 1.15,
       opacity: 0.7,
@@ -93,7 +95,6 @@ export default function LoginPage() {
       ease: "sine.inOut",
     });
 
-    // Orbit rings at different speeds + axes
     const configs = [
       { rotationY: 360, duration: 4 },
       { rotationX: 360, duration: 6 },
@@ -109,7 +110,6 @@ export default function LoginPage() {
       });
     });
 
-    // Floating background icons
     iconRefs.current.forEach((el, i) => {
       if (!el) return;
       gsap.to(el, {
@@ -128,43 +128,43 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-hidden">
 
-      {/* Ambient light blobs */}
+      {}
       <div className="absolute top-[-12%] left-[-8%] w-[380px] h-[380px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-12%] right-[-8%] w-[420px] h-[420px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Floating icons */}
+      {}
       {floatingIcons.map(({ Icon, top, left, size }, i) => (
         <div key={i} ref={el => iconRefs.current[i] = el} className="absolute text-primary/35 pointer-events-none" style={{ top, left }}>
           <Icon size={size} strokeWidth={1.5} />
         </div>
       ))}
 
-      {/* Card */}
+      {}
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
         className="w-full max-w-[820px] bg-bg-card/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,119,182,0.12)] border border-border-nav/80 flex flex-col lg:flex-row overflow-hidden"
       >
-        {/* Left visual */}
+        {}
         <div className="flex flex-col items-center justify-center bg-gradient-to-br from-primary/5 via-bg-page/30 to-secondary/5 p-8 border-b lg:border-b-0 lg:border-r border-border-nav/50 lg:w-[42%] relative overflow-hidden">
 
-          {/* Animated Atom / DNA Rings */}
+          {}
           <div className="relative w-44 h-44 mb-10 flex items-center justify-center" style={{ perspective: '600px' }}>
 
-            {/* Core pulsing orb */}
+            {}
             <div ref={coreRef} className="absolute w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary opacity-80 shadow-[0_0_30px_rgba(0,119,182,0.5)]" />
 
-            {/* Ring 1 */}
+            {}
             <div ref={el => orbitRefs.current[0] = el} className="absolute w-44 h-44 rounded-full border-2 border-primary/30" style={{ transformStyle: 'preserve-3d' }} />
-            {/* Ring 2 */}
+            {}
             <div ref={el => orbitRefs.current[1] = el} className="absolute w-32 h-32 rounded-full border-2 border-secondary/40" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(60deg)' }} />
-            {/* Ring 3 */}
+            {}
             <div ref={el => orbitRefs.current[2] = el} className="absolute w-24 h-24 rounded-full border border-primary/20" style={{ transformStyle: 'preserve-3d', transform: 'rotateY(45deg)' }} />
-            {/* Ring 4 — outermost */}
+            {}
             <div ref={el => orbitRefs.current[3] = el} className="absolute w-[170px] h-[170px] rounded-full border border-dashed border-secondary/20" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(30deg) rotateY(60deg)' }} />
 
-            {/* Orbiting dots on ring 1 */}
+            {}
             <div className="absolute w-44 h-44 rounded-full" style={{ animation: 'spin 4s linear infinite' }}>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(0,119,182,0.8)]" />
             </div>
@@ -190,14 +190,14 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Right form */}
+        {}
         <div className="flex-1 flex flex-col justify-center p-8 md:p-10">
           <div className="max-w-[270px] mx-auto w-full">
             <div className="mb-7">
-              {/* less bold + slightly bigger */}
+              {}
               <h1 className="text-[30px] font-semibold text-text-heading mb-1">Welcome back</h1>
 
-              {/* slightly bigger */}
+              {}
               <p className="text-[11px] text-text-muted uppercase tracking-widest">
                 Sign in to continue
               </p>
@@ -266,6 +266,21 @@ export default function LoginPage() {
                     </>
                   )}
                 </button>
+
+                <div className="relative flex items-center py-2">
+                  <div className="flex-grow border-t border-border-nav"></div>
+                  <span className="flex-shrink-0 mx-2 text-[10px] text-text-muted uppercase tracking-widest">Or</span>
+                  <div className="flex-grow border-t border-border-nav"></div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowFaceAuth(true)}
+                  className="w-full bg-bg-card border border-primary text-primary py-3.5 rounded-xl font-medium text-[13px] hover:bg-primary/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <ScanFace className="w-4 h-4" />
+                  Login with Face
+                </button>
               </form>
             ) : (
               <form className="space-y-3.5" onSubmit={handleVerify}>
@@ -303,10 +318,9 @@ export default function LoginPage() {
               </form>
             )}
 
-
             <p className="mt-7 text-center text-[11px] text-text-muted">
               New here?{' '}
-              {/* less bold */}
+              {}
               <Link href="/register" className="text-primary font-semibold hover:underline">
                 Create account
               </Link>
@@ -326,6 +340,10 @@ export default function LoginPage() {
         <ChevronLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
         Back to Pharmacy
       </Link>
+
+      {showFaceAuth && (
+        <FaceAuth isRegister={false} onClose={() => setShowFaceAuth(false)} />
+      )}
     </div>
   );
 }

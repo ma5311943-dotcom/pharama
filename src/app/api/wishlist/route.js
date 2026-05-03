@@ -1,9 +1,8 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
 import Product from '@/models/Product';
 
-// GET: Fetch user's wishlist
 export async function GET(req) {
   try {
     await dbConnect();
@@ -25,7 +24,6 @@ export async function GET(req) {
   }
 }
 
-// POST: Toggle product in wishlist
 export async function POST(req) {
   try {
     await dbConnect();
@@ -44,18 +42,17 @@ export async function POST(req) {
     let message = '';
 
     if (index > -1) {
-      // Remove from wishlist
+
       user.wishlist.splice(index, 1);
       message = 'Removed from favorites';
     } else {
-      // Add to wishlist
+
       user.wishlist.push(productId);
       message = 'Added to favorites';
     }
 
     await user.save();
-    
-    // Return the updated wishlist (populated)
+
     const updatedUser = await User.findById(userId).populate('wishlist');
 
     return NextResponse.json({ 

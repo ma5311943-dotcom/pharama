@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+﻿import mongoose from 'mongoose';
 
 const OrderSchema = new mongoose.Schema({
   user: {
@@ -36,7 +36,7 @@ const OrderSchema = new mongoose.Schema({
     enum: ['Pending', 'Confirmed', 'Processing', 'Dispatched', 'Out for Delivery', 'Delivered', 'Cancelled'],
     default: 'Pending',
   },
-  userName: String, // Flat field for quick access
+  userName: String,
   userEmail: String,
 }, {
   timestamps: true,

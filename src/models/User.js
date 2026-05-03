@@ -12,8 +12,14 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Please provide a password'],
-    select: false, // Don't return password by default
+    select: false,
+  },
+  faceDescriptor: {
+    type: [Number],
+    default: [],
+  },
+  faceImage: {
+    type: String,
   },
   role: {
     type: String,

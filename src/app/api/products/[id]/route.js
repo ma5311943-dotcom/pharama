@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Product from '@/models/Product';
 
@@ -7,8 +7,7 @@ export async function PUT(request, { params }) {
     await dbConnect();
     const { id } = params;
     const body = await request.json();
-    
-    // Determine status based on stock if stock is provided
+
     if (body.stock !== undefined) {
       if (body.stock === 0) body.status = 'Out of Stock';
       else if (body.stock < 10) body.status = 'Low Stock';

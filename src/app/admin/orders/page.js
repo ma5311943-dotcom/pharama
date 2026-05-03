@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -31,7 +31,6 @@ const OrdersAdmin = () => {
   useEffect(() => {
     fetchOrders();
   }, []);
-
 
   const fetchOrders = async () => {
     try {
@@ -86,7 +85,7 @@ const OrdersAdmin = () => {
 
   return (
     <div className="space-y-4 md:space-y-6">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-text-heading">Order Management</h1>
@@ -94,7 +93,7 @@ const OrdersAdmin = () => {
         </div>
       </div>
 
-      {/* Controls */}
+      {}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-grow">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted w-3.5 h-3.5" />
@@ -110,7 +109,7 @@ const OrdersAdmin = () => {
         </button>
       </div>
 
-      {/* Orders Table */}
+      {}
       <div className="bg-bg-card rounded-2xl border border-border-nav shadow-soft overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse min-w-[900px]">
@@ -201,7 +200,7 @@ const OrdersAdmin = () => {
                           <Trash2 className="w-4 h-4" />
                         </button>
 
-                        {/* Status Flow Buttons */}
+                        {}
                         {order.status === "Pending" && (
                           <button
                             onClick={() => updateOrderStatus(order._id, 'Confirmed')}
@@ -276,7 +275,7 @@ const OrdersAdmin = () => {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
-                  {/* Left Column: Info & Products */}
+                  {}
                   <div className="space-y-6">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="bg-bg-page p-3 rounded-xl border border-border-nav">
@@ -310,7 +309,7 @@ const OrdersAdmin = () => {
                     </div>
                   </div>
 
-                  {/* Right Column: Payment Screenshot */}
+                  {}
                   <div className="space-y-4">
                     <h4 className="text-[10px] font-bold uppercase tracking-widest text-text-heading flex items-center justify-between">
                       <span>Screenshot ({selectedOrder.paymentMethod})</span>

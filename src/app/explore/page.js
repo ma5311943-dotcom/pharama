@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -28,7 +28,7 @@ const ExplorePage = () => {
     <div className="min-h-screen bg-bg-page pt-20 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Hero Section */}
+        {}
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -75,7 +75,7 @@ const ExplorePage = () => {
           </div>
         </div>
 
-        {/* Drug Categories Grid */}
+        {}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {drugClasses.map((item, i) => (
             <motion.div
@@ -107,7 +107,7 @@ const ExplorePage = () => {
           ))}
         </div>
 
-        {/* Info Banner */}
+        {}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

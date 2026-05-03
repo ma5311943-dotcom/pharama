@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
@@ -93,7 +93,6 @@ const AdminDashboard = () => {
 
     fetchStats();
 
-    // GSAP Stagger
     const ctx = gsap.context(() => {
       gsap.fromTo(".stat-card", 
         { y: 30, opacity: 0 },
@@ -139,13 +138,13 @@ const AdminDashboard = () => {
 
   return (
     <div ref={containerRef} className="space-y-4 md:space-y-6">
-      {/* Header */}
+      {}
       <div className="animate-in fade-in slide-in-from-left duration-700">
         <h1 className="text-xl md:text-2xl font-bold text-text-heading">Dashboard</h1>
         <p className="text-[10px] text-text-muted font-medium mt-0.5 uppercase tracking-wide">Overview & Analytics</p>
       </div>
 
-      {/* Stats Grid */}
+      {}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {dashboardStats.map((stat, i) => (
           <div key={i} className="stat-card bg-bg-card p-3.5 md:p-4 rounded-2xl border border-border-nav shadow-soft hover:shadow-md transition-all group">
@@ -165,7 +164,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 md:gap-6">
-        {/* Main Chart */}
+        {}
         <div className="chart-card xl:col-span-2 bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-base font-bold text-text-heading">Revenue Growth</h3>
@@ -179,7 +178,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Recent Activity / Mini Table */}
+        {}
         <div className="chart-card bg-bg-card p-4 md:p-6 rounded-[1.5rem] border border-border-nav shadow-soft">
           <div className="flex justify-between items-center mb-5">
             <h3 className="text-base font-bold text-text-heading">Recent Orders</h3>

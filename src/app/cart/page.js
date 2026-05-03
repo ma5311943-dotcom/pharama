@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -36,8 +36,6 @@ const CartPage = () => {
     setMounted(true);
   }, []);
 
-
-
   const handleUpdateQuantity = (item, delta) => {
     if (delta > 0) {
       dispatch(addItemToCart(item));
@@ -45,8 +43,6 @@ const CartPage = () => {
       dispatch(removeItemFromCart(item.id));
     }
   };
-
-
 
   const shipping = totalAmount > 0 ? 5.00 : 0;
   const total = totalAmount + shipping;
@@ -57,7 +53,7 @@ const CartPage = () => {
     <div className="min-h-screen bg-bg-page pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
 
-        {/* Header */}
+        {}
         <div className="flex items-center gap-4 mb-10">
           <Link
             href="/store"
@@ -73,7 +69,7 @@ const CartPage = () => {
         {items.length > 0 ? (
           <div className="flex flex-col lg:flex-row gap-8 items-start">
 
-            {/* Cart Items */}
+            {}
             <div className="w-full lg:flex-grow space-y-4">
               <AnimatePresence mode="popLayout">
                 {items.map((item) => (
@@ -87,7 +83,7 @@ const CartPage = () => {
                   >
                     <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-border-nav bg-bg-page">
                       <img
-                        src={item.image || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800'}
+                        src={item.image || 'https:
                         alt={item.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -129,7 +125,7 @@ const CartPage = () => {
               </AnimatePresence>
             </div>
 
-            {/* Order Summary */}
+            {}
             <div className="w-full lg:w-[300px] shrink-0 sticky top-24">
               <div className="bg-bg-card rounded-[1.8rem] p-6 border border-border-nav shadow-soft">
                 <h3 className="text-base font-bold text-text-heading mb-6">Order Summary</h3>
@@ -188,7 +184,6 @@ const CartPage = () => {
         )}
 
       </div>
-
 
     </div>
   );

@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
       viewport={{ once: true }}
       className="group relative bg-bg-card rounded-2xl border border-border-nav p-4 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 flex flex-col h-full cursor-pointer overflow-hidden"
     >
-      {/* Premium Spotlight Effect */}
+      {}
       <div 
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl z-0"
         style={{
@@ -65,7 +65,7 @@ const ProductCard = ({ product }) => {
       
       <div className="relative z-10 aspect-square rounded-xl overflow-hidden bg-bg-page mb-4">
         <img
-          src={image || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400'}
+          src={image || 'https://via.placeholder.com/300?text=No+Image'}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />

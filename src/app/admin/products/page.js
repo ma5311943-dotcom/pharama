@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -64,8 +64,6 @@ const ProductsAdmin = () => {
       setUploading(false);
     }
   };
-
-
 
   useEffect(() => {
     fetchProducts();
@@ -153,7 +151,7 @@ const ProductsAdmin = () => {
     if (query.length < 3) return;
     setDbLoading(true);
     try {
-      const res = await fetch(`https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=${query}`);
+      const res = await fetch(`https:
       const data = await res.json();
       if (data.approximateGroup?.candidate) {
         const list = data.approximateGroup.candidate
@@ -177,7 +175,7 @@ const ProductsAdmin = () => {
   const autoFillProduct = async (drug) => {
     setDbLoading(true);
     try {
-      const classRes = await fetch(`https://rxnav.nlm.nih.gov/REST/rxclass/class/byRxcui.json?rxcui=${drug.rxcui}&relaSource=ATC`);
+      const classRes = await fetch(`https:
       const classData = await classRes.json();
       const category = classData.rxclassDrugInfoList?.rxclassDrugInfo?.[0]?.rxclassMinConceptItem?.className || "General Medication";
 
@@ -198,7 +196,7 @@ const ProductsAdmin = () => {
 
   return (
     <div className="space-y-4 md:space-y-6">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-text-heading">Product Inventory</h1>
@@ -213,7 +211,7 @@ const ProductsAdmin = () => {
         </button>
       </div>
 
-      {/* Controls */}
+      {}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-grow">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted w-3.5 h-3.5" />
@@ -229,7 +227,7 @@ const ProductsAdmin = () => {
         </button>
       </div>
 
-      {/* Table Container */}
+      {}
       <div className="bg-bg-card rounded-2xl border border-border-nav shadow-soft overflow-hidden">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse min-w-[700px]">
@@ -320,7 +318,7 @@ const ProductsAdmin = () => {
         </div>
       </div>
 
-      {/* Product Modal (Add/Edit) */}
+      {}
       <Drawer.Root direction="right" open={isModalOpen} onOpenChange={setIsModalOpen}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm" />
@@ -342,7 +340,7 @@ const ProductsAdmin = () => {
 
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-5">
-                  {/* Left Column: Basic Info */}
+                  {}
                   <div className="space-y-3 sm:space-y-4">
                     <div className="space-y-1 sm:space-y-1.5">
                       <div className="flex items-center justify-between">
@@ -405,79 +403,14 @@ const ProductsAdmin = () => {
                     </div>
                   </div>
 
-                  {/* Right Column: Image & Description */}
+                  {}
                   <div className="space-y-3 sm:space-y-4">
                     <div className="space-y-1 sm:space-y-1.5">
                       <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Product Image</label>
                       <div className="relative group h-[115px]">
                         <input
                           type="file"
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                        />
-                        <div className={cn(
-                          "w-full h-full bg-bg-page border-2 border-dashed border-border-nav rounded-xl flex flex-col items-center justify-center gap-2 transition-all",
-                          formData.image ? "border-primary/50 bg-primary/5" : "hover:bg-primary/5 hover:border-primary/30"
-                        )}>
-                          {uploading ? (
-                            <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                          ) : formData.image ? (
-                            <div className="flex items-center gap-3 px-4">
-                              <div className="w-14 h-14 rounded-lg overflow-hidden border border-primary/20 shrink-0">
-                                <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
-                              </div>
-                              <div className="flex-grow min-w-0 text-left">
-                                <p className="text-[9px] font-bold text-primary truncate leading-tight">Image Uploaded</p>
-                                <p className="text-[8px] text-text-muted uppercase tracking-tighter mt-0.5">Click to change</p>
-                              </div>
-                            </div>
-                          ) : (
-                            <>
-                              <UploadCloud className="w-5 h-5 text-primary/50" />
-                              <div className="text-center px-2">
-                                <p className="text-[9px] font-bold text-text-heading leading-tight">Drop your image here</p>
-                                <p className="text-[8px] text-text-muted uppercase tracking-tighter">PNG, JPG, WebP</p>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-1 sm:space-y-1.5">
-                      <label className="text-[9px] font-bold uppercase tracking-wider text-text-muted">Description</label>
-                      <textarea
-                        rows="2"
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        placeholder="Brief product details..."
-                        className="w-full bg-bg-page border-none rounded-xl py-2.5 sm:py-3 px-3 sm:px-4 focus:ring-1 ring-primary/20 text-[11px] font-bold resize-none h-[72px]"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex justify-end pt-2">
-                  <button
-                    disabled={submitting}
-                    className="w-full md:w-[200px] bg-primary text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
-                  >
-                    {submitting ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Saving...</span>
-                      </div>
-                    ) : (editingProduct ? 'Save Changes' : 'Add Product')}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </Drawer.Content>
-        </Drawer.Portal>
-      </Drawer.Root>
-
-      {/* Database Search Overlay */}
+                          accept="image}
       <Drawer.Root direction="bottom" open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-md" />

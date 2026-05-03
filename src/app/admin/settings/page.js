@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -94,7 +94,7 @@ const SettingsPage = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Navigation Sidebar */}
+        {}
         <div className="lg:col-span-1 flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-2 lg:pb-0 no-scrollbar">
           {tabs.map((tab) => (
             <button
@@ -113,7 +113,7 @@ const SettingsPage = () => {
           ))}
         </div>
 
-        {/* Content Area */}
+        {}
         <div className="lg:col-span-3">
           <form onSubmit={handleSubmit} className="bg-bg-card rounded-3xl p-6 md:p-10 border border-border-nav shadow-soft relative overflow-hidden">
             <AnimatePresence mode="wait">

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Order from '@/models/Order';
 import Product from '@/models/Product';
@@ -21,7 +21,6 @@ export async function GET(req) {
 
     const totalRevenue = revenueData.length > 0 ? revenueData[0].total : 0;
 
-    // Date range logic
     let startDate = new Date();
     if (range === '30') {
       startDate.setDate(startDate.getDate() - 30);
@@ -42,7 +41,6 @@ export async function GET(req) {
       { $sort: { "_id": 1 } }
     ]);
 
-    // Latest orders
     const latestOrders = await Order.find()
       .sort({ createdAt: -1 })
       .limit(5)

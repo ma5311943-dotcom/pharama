@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import Link from 'next/link';
@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -63,7 +63,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         "fixed lg:top-20 inset-y-0 left-0 w-64 bg-bg-page text-white flex flex-col border-r border-border-nav/30 z-[70] lg:z-[30] transition-transform duration-300 ease-in-out lg:translate-x-0",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        {/* Mobile Header with close button */}
+        {}
         <div className="flex items-center justify-between p-4 lg:hidden border-b border-border-nav/5">
           <div className="flex items-center gap-2">
             <Pill className="text-primary w-5 h-5" />
@@ -75,7 +75,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </div>
         <div className="h-4 hidden lg:block" />
 
-        {/* MENU */}
+        {}
         <nav className="flex-grow p-4 space-y-1 overflow-y-auto custom-scrollbar">
           {menuItems.map((item) => {
             const isActive = pathname === item.href;
@@ -100,7 +100,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           })}
         </nav>
 
-        {/* FOOTER */}
+        {}
         <div className="p-4 border-t border-border-nav/5">
           <button 
             onClick={handleLogout}

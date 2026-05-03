@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
@@ -49,13 +49,13 @@ const QualityHighlight = () => {
       id="quality-section"
       className="relative min-h-screen py-24 flex items-center bg-bg-page text-white overflow-hidden"
     >
-      {/* Background Tech Gradient */}
+      {}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_#0077b622_0%,transparent_70%)]" />
         <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[radial-gradient(circle_at_center,_#00b4a611_0%,transparent_70%)]" />
       </div>
 
-      {/* 3D Experience (Using React Three Fiber for 'Best' Performance) */}
+      {}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40 hidden md:block">
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
           <Suspense fallback={null}>
@@ -66,7 +66,7 @@ const QualityHighlight = () => {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
 
-        {/* Header Section */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const QualityHighlight = () => {
           </p>
         </motion.div>
 
-        {/* Feature Cards */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
           {[
             {
@@ -122,7 +122,7 @@ const QualityHighlight = () => {
           ))}
         </div>
 
-        {/* The traveling bottle from page.js will rotate in the space below */}
+        {}
         <div className="h-[200px] lg:h-[300px]" />
       </div>
     </section>

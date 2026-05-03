@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -66,7 +66,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -124,7 +123,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Action Icons */}
+          {}
           <div className="hidden md:flex items-center space-x-5">
             {mounted && !isAdmin && (
               <Link href="/cart" className="p-2 text-text-muted hover:text-primary transition-colors hover:bg-primary/5 rounded-full relative cursor-pointer">

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -96,8 +96,7 @@ const AIAssistant = () => {
 
     const aiText = await askGrok(history);
     let aiResponse = aiText;
-    
-    // Smart Fallback AI if no API key is provided
+
     if (!aiResponse) {
       const lowerInput = userText.toLowerCase();
       if (lowerInput.includes('brufen') || lowerInput.includes('pain')) {
@@ -235,7 +234,7 @@ const AIAssistant = () => {
         )}
       </AnimatePresence>
 
-      {/* Toggle Button with Label */}
+      {}
       <div className="flex items-center gap-3">
         <AnimatePresence>
           {!isOpen && (

@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import Hero from "@/components/home/Hero";
-import Categories from "@/components/home/Categories";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import ProductIngredients from "@/components/home/ProductIngredients";
-import QualityHighlight from "@/components/home/QualityHighlight";
-import PriceCard from "@/components/home/PriceCard";
-import Team from "@/components/home/Team";
-import NearbyPharmacy from "@/components/home/NearbyPharmacy";
+import dynamic from 'next/dynamic';
+
+const Hero = dynamic(() => import("@/components/home/Hero"), { ssr: true });
+const Categories = dynamic(() => import("@/components/home/Categories"), { ssr: true });
+const FeaturedProducts = dynamic(() => import("@/components/home/FeaturedProducts"), { ssr: true });
+const ProductIngredients = dynamic(() => import("@/components/home/ProductIngredients"));
+const QualityHighlight = dynamic(() => import("@/components/home/QualityHighlight"));
+const PriceCard = dynamic(() => import("@/components/home/PriceCard"));
+const Team = dynamic(() => import("@/components/home/Team"));
+const NearbyPharmacy = dynamic(() => import("@/components/home/NearbyPharmacy"), { ssr: false });
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -22,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // THE TRAVELING BOTTLE TIMELINE
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -32,10 +34,8 @@ export default function Home() {
         }
       });
 
-      // Initial state
       gsap.set(bottleRef.current, { xPercent: -50, yPercent: -50 });
 
-      // Step 1: Move to Categories
       tl.to(bottleRef.current, {
         top: "140%",
         left: "20%",
@@ -44,7 +44,6 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // Step 2: Move to Featured Products
       tl.to(bottleRef.current, {
         top: "235%",
         left: "80%",
@@ -53,7 +52,6 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // Step 3: Move to Ingredients (Left Side)
       tl.to(bottleRef.current, {
         top: "340%",
         left: "25%",
@@ -62,7 +60,6 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // Step 4: Move to Quality Highlight (Center, Rotating)
       tl.to(bottleRef.current, {
         top: "475%",
         left: "50%",
@@ -71,7 +68,6 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // Step 5: Final Landing on Price Card
       tl.to(bottleRef.current, {
         top: "585%",
         left: "28%",
@@ -80,7 +76,6 @@ export default function Home() {
         ease: "power2.inOut"
       });
 
-      // Floating effect while traveling
       gsap.to(bottleRef.current, {
         y: -15,
         duration: 2,
@@ -95,7 +90,7 @@ export default function Home() {
 
   return (
     <main ref={containerRef} className="relative">
-      {/* THE TRAVELING PRODUCT IMAGE */}
+      {}
       <div
         ref={bottleRef}
         className="fixed top-1/2 left-[75%] -translate-x-1/2 -translate-y-1/2 w-[280px] lg:w-[350px] z-[100] pointer-events-none hidden lg:block"

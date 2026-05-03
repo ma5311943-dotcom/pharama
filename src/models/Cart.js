@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+﻿import mongoose from 'mongoose';
 
 const CartSchema = new mongoose.Schema({
   userId: {
@@ -9,7 +9,7 @@ const CartSchema = new mongoose.Schema({
   },
   items: [
     {
-      id: String, // Product ID
+      id: String,
       name: String,
       price: Number,
       quantity: Number,

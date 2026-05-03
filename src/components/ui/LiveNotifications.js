@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Pill } from 'lucide-react';
@@ -15,7 +15,7 @@ const NOTIFICATIONS = [
 
 export default function LiveNotifications() {
   useEffect(() => {
-    // Show a fake notification periodically
+
     const interval = setInterval(() => {
       const randomNotif = NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)];
       
@@ -53,7 +53,7 @@ export default function LiveNotifications() {
           </div>
         </div>
       ), { duration: 5000, position: 'bottom-left' });
-    }, 25000); // Triggers every 25 seconds
+    }, 25000);
 
     return () => clearInterval(interval);
   }, []);

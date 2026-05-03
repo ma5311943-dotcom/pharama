@@ -7,7 +7,7 @@ const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
-  const springConfig = { damping: 25, stiffness: 200 };
+  const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
 
@@ -42,7 +42,7 @@ const CustomCursor = () => {
 
   return (
     <div className="hidden lg:block">
-      {/* Main Cursor Dot */}
+      {}
       <motion.div
         className="fixed top-0 left-0 w-2 h-2 rounded-full border-2 border-primary pointer-events-none z-[9999] flex items-center justify-center"
         style={{
@@ -57,7 +57,7 @@ const CustomCursor = () => {
         <div className="w-0.5 h-0.5 bg-primary rounded-full" />
       </motion.div>
 
-      {/* Trailing Glow */}
+      {}
       <motion.div
         className="fixed top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none z-[9998]"
         animate={{

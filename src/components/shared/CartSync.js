@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ export default function CartSync() {
   const { user } = useSelector((state) => state.auth);
   const isInitialMount = useRef(true);
 
-  // 1. Load cart from DB on login
   useEffect(() => {
     const fetchCart = async () => {
       if (user?._id) {
@@ -31,7 +30,6 @@ export default function CartSync() {
     fetchCart();
   }, [user?._id, dispatch]);
 
-  // 2. Sync cart to DB on changes
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -58,7 +56,7 @@ export default function CartSync() {
 
     const timer = setTimeout(() => {
       syncToDB();
-    }, 1000); // Debounce sync
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [items, totalAmount, user?._id]);

@@ -24,7 +24,7 @@ const ProductSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200&auto=format&fit=crop',
+    default: 'https://via.placeholder.com/300?text=No+Image'
   },
   status: {
     type: String,

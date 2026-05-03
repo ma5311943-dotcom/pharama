@@ -25,6 +25,8 @@
 
 html {
   scrollbar-gutter: stable;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -32,9 +34,10 @@ body {
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
-/* Premium Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -67,4 +70,6 @@ h6 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border-nav);
+  will-change: backdrop-filter;
+  transform: translateZ(0);
 }

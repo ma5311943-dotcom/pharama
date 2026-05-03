@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -108,7 +108,7 @@ const Team = () => {
     <section ref={sectionRef} className="py-16 bg-gradient-to-b from-bg-card to-bg-page overflow-hidden">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
 
-        {/* Header */}
+        {}
         <div className="text-center max-w-xl mx-auto mb-10 team-title">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold mb-4">
             <Star className="w-4 h-4" />
@@ -122,7 +122,7 @@ const Team = () => {
           </p>
         </div>
 
-        {/* Cards Grid */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {teamData.map((member, idx) => (
             <div
@@ -133,13 +133,13 @@ const Team = () => {
               style={{ transition: 'box-shadow 0.3s ease', willChange: 'transform' }}
               className="group relative rounded-2xl bg-bg-card border border-border-nav shadow-lg hover:shadow-2xl overflow-hidden cursor-default"
             >
-              {/* Top accent bar */}
+              {}
               <div className={`h-1 w-full bg-gradient-to-r ${member.accent}`} />
 
-              {/* Card body — reduced padding */}
+              {}
               <div className="p-5 flex flex-col items-center text-center">
 
-                {/* Avatar — same w-60 h-60 image size */}
+                {}
                 <div className="relative mb-4">
                   <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${member.accent} blur-md opacity-40 scale-110`} />
                   <div className="relative w-60 h-60 rounded-full overflow-hidden ring-4 ring-border-nav shadow-xl">
@@ -154,16 +154,16 @@ const Team = () => {
                   </div>
                 </div>
 
-                {/* Name & role */}
+                {}
                 <h3 className="text-lg font-black text-text-heading leading-tight">{member.name}</h3>
                 <p className="text-primary font-semibold text-[10px] uppercase tracking-widest mt-0.5 mb-4">
                   {member.role}
                 </p>
 
-                {/* Divider */}
+                {}
                 <div className="w-10 h-px bg-border-nav mb-4" />
 
-                {/* Achievements */}
+                {}
                 <ul className="space-y-2 text-left w-full">
                   {member.achievements.map((ach, i) => (
                     <li key={i} className="flex items-start gap-2.5">
@@ -174,7 +174,7 @@ const Team = () => {
                 </ul>
               </div>
 
-              {/* Bottom gradient line on hover */}
+              {}
               <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${member.accent} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
             </div>
           ))}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -37,11 +37,11 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className="flex min-h-screen bg-bg-page pt-20">
-      {/* Sidebar */}
+      {}
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
       <div className="flex-grow flex flex-col min-w-0 relative lg:pl-64">
-        {/* Mobile Sidebar Toggle - Top Left */}
+        {}
         {!isSidebarOpen && (
           <button
             onClick={() => setIsSidebarOpen(true)}

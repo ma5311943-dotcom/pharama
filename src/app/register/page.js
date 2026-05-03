@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, verifyOtpAction, clearError } from '@/redux/slices/authSlice';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Mail, Lock, User, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, ShieldCheck, Loader2 } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, HeartPulse, Activity, Stethoscope, Pill, ChevronLeft, ShieldCheck, Loader2, ScanFace } from 'lucide-react';
 import toast from 'react-hot-toast';
+import FaceAuth from '@/components/auth/FaceAuth';
 
 const floatingIcons = [
   { Icon: Pill, top: '8%', left: '6%', size: 24, delay: 0 },
@@ -31,6 +32,7 @@ export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState('');
   const [registeredEmail, setRegisteredEmail] = useState('');
+  const [showFaceAuth, setShowFaceAuth] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -126,14 +128,14 @@ export default function RegisterPage() {
         </div>
       ))}
 
-      {/* Card */}
+      {}
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
         className="w-full max-w-[820px] bg-bg-card/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_70px_-15px_rgba(0,180,166,0.12)] border border-border-nav/80 flex flex-col lg:flex-row overflow-hidden"
       >
-        {/* Left form */}
+        {}
         <div className="flex-1 flex flex-col justify-center p-8 md:p-10">
           <div className="max-w-[270px] mx-auto w-full">
             <div className="mb-6">
@@ -215,6 +217,21 @@ export default function RegisterPage() {
                     </>
                   )}
                 </button>
+
+                <div className="relative flex items-center py-2">
+                  <div className="flex-grow border-t border-border-nav"></div>
+                  <span className="flex-shrink-0 mx-2 text-[10px] text-text-muted uppercase tracking-widest">Or</span>
+                  <div className="flex-grow border-t border-border-nav"></div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowFaceAuth(true)}
+                  className="w-full bg-bg-card border border-secondary text-secondary py-3.5 rounded-xl font-medium text-[13px] hover:bg-secondary/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <ScanFace className="w-4 h-4" />
+                  Register with Face
+                </button>
               </form>
             ) : (
               <form className="space-y-3" onSubmit={handleVerify}>
@@ -250,10 +267,10 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* Right visual */}
+        {}
         <div className="flex flex-col items-center justify-center bg-gradient-to-bl from-secondary/5 via-bg-page/30 to-primary/5 p-8 border-t lg:border-t-0 lg:border-l border-border-nav/50 lg:w-[42%] relative overflow-hidden order-first lg:order-last">
 
-          {/* Atom animation */}
+          {}
           <div className="relative w-44 h-44 mb-10 flex items-center justify-center" style={{ perspective: '600px' }}>
             <div ref={coreRef} className="absolute w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-primary opacity-80 shadow-[0_0_30px_rgba(0,180,166,0.5)]" />
 
@@ -299,6 +316,10 @@ export default function RegisterPage() {
         <ChevronLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
         Back to Pharmacy
       </Link>
+
+      {showFaceAuth && (
+        <FaceAuth isRegister={true} onClose={() => setShowFaceAuth(false)} />
+      )}
     </div>
   );
 }

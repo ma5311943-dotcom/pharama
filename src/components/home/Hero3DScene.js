@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -16,7 +16,7 @@ const PillModel = ({ position, rotationSpeed, floatSpeed, delay }) => {
   return (
     <Float speed={floatSpeed} rotationIntensity={1.5} floatIntensity={2} floatingRange={[-0.5, 0.5]}>
       <group ref={groupRef} position={position} scale={0.6}>
-        {/* Top Half - Neon Blue */}
+        {}
         <mesh position={[0, 0.6, 0]}>
           <cylinderGeometry args={[0.4, 0.4, 1.2, 32]} />
           <meshPhysicalMaterial color="#00a8e8" metalness={0.2} roughness={0.1} clearcoat={1} />
@@ -26,7 +26,7 @@ const PillModel = ({ position, rotationSpeed, floatSpeed, delay }) => {
           <meshPhysicalMaterial color="#00a8e8" metalness={0.2} roughness={0.1} clearcoat={1} />
         </mesh>
 
-        {/* Bottom Half - Dark/Black */}
+        {}
         <mesh position={[0, -0.6, 0]}>
           <cylinderGeometry args={[0.4, 0.4, 1.2, 32]} />
           <meshPhysicalMaterial color="#1a1a1a" metalness={0.5} roughness={0.3} clearcoat={0.5} />
@@ -36,7 +36,7 @@ const PillModel = ({ position, rotationSpeed, floatSpeed, delay }) => {
           <meshPhysicalMaterial color="#1a1a1a" metalness={0.5} roughness={0.3} clearcoat={0.5} />
         </mesh>
 
-        {/* Glowing Center Ring */}
+        {}
         <mesh position={[0, 0, 0]}>
           <cylinderGeometry args={[0.41, 0.41, 0.05, 32]} />
           <meshStandardMaterial color="#00a8e8" emissive="#00a8e8" emissiveIntensity={0.8} />
@@ -47,13 +47,13 @@ const PillModel = ({ position, rotationSpeed, floatSpeed, delay }) => {
 };
 
 export default function Hero3DScene() {
-  // Generate random stable positions for 6 pills
+
   const pills = useMemo(() => {
     return Array.from({ length: 6 }).map((_, i) => ({
       position: [
-        (Math.random() - 0.5) * 15, // x
-        (Math.random() - 0.5) * 8,  // y
-        (Math.random() - 0.5) * 5 - 2 // z
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 5 - 2
       ],
       rotationSpeed: {
         x: (Math.random() - 0.5) * 1.5,

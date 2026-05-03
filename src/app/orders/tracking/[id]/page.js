@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -78,7 +78,7 @@ const OrderTracking = () => {
   return (
     <div className="min-h-screen bg-bg-page pt-28 pb-20 px-4 md:px-6">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
+        {}
         <div className="flex items-center justify-between mb-8">
           <Link href="/profile" className="p-2 hover:bg-bg-card rounded-full transition-all group">
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -89,10 +89,10 @@ const OrderTracking = () => {
           </div>
         </div>
 
-        {/* Main Tracking Card */}
+        {}
         <div className="bg-bg-card rounded-[2.5rem] border border-border-nav shadow-soft overflow-hidden mb-6 relative">
 
-          {/* Progress Bar Background */}
+          {}
           <div className="absolute top-0 left-0 w-full h-1 bg-bg-page z-20">
             <motion.div
               initial={{ width: 0 }}
@@ -102,7 +102,7 @@ const OrderTracking = () => {
             />
           </div>
 
-          {/* Status Header - More Dynamic */}
+          {}
           <div className="p-6 md:p-10 bg-primary/[0.02] border-b border-border-nav flex flex-col md:flex-row md:items-center justify-between gap-6 relative">
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 bg-bg-card rounded-3xl shadow-xl border border-primary/10 flex items-center justify-center text-primary relative overflow-hidden group">
@@ -129,7 +129,7 @@ const OrderTracking = () => {
             </div>
           </div>
 
-          {/* Tracking Timeline */}
+          {}
           <div className="p-6 md:p-10">
             <div className="relative">
               {orderStatuses.map((step, index) => {
@@ -138,7 +138,7 @@ const OrderTracking = () => {
 
                 return (
                   <div key={step.status} className="flex gap-6 mb-8 last:mb-0 relative">
-                    {/* Line */}
+                    {}
                     {index !== orderStatuses.length - 1 && (
                       <div className={cn(
                         "absolute left-[17px] top-[40px] w-[2px] h-[calc(100%+32px)] z-0 transition-colors duration-500",
@@ -146,7 +146,7 @@ const OrderTracking = () => {
                       )} />
                     )}
 
-                    {/* Icon */}
+                    {}
                     <div className={cn(
                       "w-9 h-9 rounded-full flex items-center justify-center shrink-0 z-10 transition-all duration-500",
                       isCompleted ? "bg-primary text-white shadow-lg shadow-primary/20 scale-110" : "bg-bg-page text-gray-300"
@@ -154,7 +154,7 @@ const OrderTracking = () => {
                       <step.icon className={cn("w-4 h-4", isCurrent && "animate-pulse")} />
                     </div>
 
-                    {/* Info */}
+                    {}
                     <div className={cn("flex-grow pt-1 transition-all", isCompleted ? "opacity-100" : "opacity-40")}>
                       <h3 className="text-sm font-bold text-text-heading uppercase tracking-tight mb-1">{step.status}</h3>
                       <p className="text-xs font-medium text-text-muted leading-relaxed">{step.desc}</p>
@@ -170,7 +170,7 @@ const OrderTracking = () => {
           </div>
         </div>
 
-        {/* Order Details Mini-Card */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-bg-card rounded-3xl border border-border-nav shadow-soft p-6 md:p-8">
             <h3 className="text-sm font-bold text-text-heading uppercase tracking-widest mb-6 flex items-center gap-3">
@@ -208,7 +208,7 @@ const OrderTracking = () => {
             </div>
           </div>
 
-          {/* Customer & Payment Info */}
+          {}
           <div className="bg-bg-card rounded-3xl border border-border-nav shadow-soft p-6 md:p-8 flex flex-col">
             <h3 className="text-sm font-bold text-text-heading uppercase tracking-widest mb-6 flex items-center gap-3">
               <User className="w-4 h-4 text-primary" />

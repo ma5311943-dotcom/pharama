@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
@@ -77,7 +77,7 @@ const ProfilePage = () => {
     <div className="min-h-screen bg-bg-page py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Profile Header */}
+        {}
         <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border-nav shadow-xl mb-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 bg-primary/5 rounded-full -mr-8 -mt-8" />
 
@@ -164,10 +164,10 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Dashboard Grid */}
+        {}
         <div className="grid md:grid-cols-2 gap-6">
 
-          {/* Quick Stats */}
+          {}
           <div className="space-y-6">
             {[
               { label: "My Orders", icon: Package, count: `${orderCount} Orders`, color: "bg-blue-500", href: "/profile/orders" },
@@ -202,7 +202,7 @@ const ProfilePage = () => {
             ))}
           </div>
 
-          {/* Recent Activity */}
+          {}
           <div className="bg-bg-card rounded-[2rem] p-8 border border-border-nav shadow-soft">
             <h3 className="text-xl font-semibold text-text-heading mb-6">
               Recent Activity
@@ -222,7 +222,7 @@ const ProfilePage = () => {
 
         </div>
 
-        {/* Logout */}
+        {}
         <div className="mt-12 text-center">
           <button
             onClick={handleLogout}

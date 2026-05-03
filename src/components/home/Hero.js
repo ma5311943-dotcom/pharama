@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -41,10 +41,10 @@ const Hero = () => {
       id="hero-section"
     >
 
-      {/* Real 3D Floating Pills Background */}
+      {}
       <Hero3DScene />
 
-      {/* CONTENT */}
+      {}
       <div className="max-w-6xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center text-center lg:text-left">
 
@@ -100,10 +100,10 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* desktop spacing */}
+          {}
           <div className="hidden lg:block h-[420px]" />
 
-          {/* mobile fallback */}
+          {}
           <div className="lg:hidden mt-12 flex justify-center w-full relative">
             <div className="w-full max-w-[220px] bg-white rounded-3xl p-4 shadow-[0_0_30px_rgba(255,165,0,0.2)]">
               <img

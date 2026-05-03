@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -87,7 +87,7 @@ const StorePage = () => {
 
   return (
     <div className="min-h-screen bg-bg-page pt-16 pb-20 relative overflow-x-hidden">
-      {/* BACKGROUND ELEMENTS */}
+      {}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {tabletStyles.map((style, i) => (
           <img
@@ -199,7 +199,7 @@ const StorePage = () => {
                     >
                       <div className="relative aspect-[4/3] overflow-hidden bg-bg-page">
                         <img
-                          src={product.image || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800'}
+                          src={product.image || 'https:
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
@@ -11,7 +11,7 @@ const Preloader = () => {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Lock scroll while loading
+
     document.body.style.overflow = 'hidden';
 
     const tl = gsap.timeline({
@@ -21,12 +21,10 @@ const Preloader = () => {
       }
     });
 
-    // Initial Setup
     gsap.set(pillRef.current, { y: -200, rotation: -180, scale: 0.5, opacity: 0 });
     gsap.set(textRef.current, { y: 100, opacity: 0 });
     gsap.set(containerRef.current, { clipPath: 'circle(150% at 50% 50%)' });
 
-    // 1. Pill drops in, bounces, and spins
     tl.to(pillRef.current, {
       y: 0,
       rotation: 0,
@@ -35,16 +33,16 @@ const Preloader = () => {
       duration: 1.2,
       ease: "bounce.out"
     })
-    // 2. PharmaEase text slides up "in style"
+
     .to(textRef.current, {
       y: 0,
       opacity: 1,
       duration: 0.8,
       ease: "power4.out"
     }, "-=0.6")
-    // 3. Let the user see the logo briefly
+
     .to({}, { duration: 0.6 })
-    // 4. Shrink the logo elements quickly
+
     .to([pillRef.current, textRef.current], {
       scale: 0,
       opacity: 0,
@@ -52,7 +50,7 @@ const Preloader = () => {
       stagger: 0.1,
       ease: "back.in(1.7)"
     })
-    // 5. Circular reveal to show the website
+
     .to(containerRef.current, {
       clipPath: "circle(0% at 50% 50%)",
       duration: 1.2,
@@ -73,12 +71,12 @@ const Preloader = () => {
     >
       <div className="relative z-10 flex flex-col items-center gap-6">
         
-        {/* Medicine Moving */}
+        {}
         <div ref={pillRef} className="p-5 bg-primary/10 rounded-3xl border border-primary/20 shadow-[0_0_50px_rgba(0,168,232,0.3)]">
           <Pill className="w-16 h-16 text-primary" />
         </div>
 
-        {/* Text Coming in Style */}
+        {}
         <div className="overflow-hidden">
           <h2 ref={textRef} className="text-text-heading text-4xl sm:text-5xl font-black tracking-[0.2em] uppercase">
             Pharma<span className="text-primary">Ease</span>

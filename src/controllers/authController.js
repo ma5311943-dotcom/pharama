@@ -1,4 +1,4 @@
-import User from '@/models/User';
+﻿import User from '@/models/User';
 import dbConnect from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -11,21 +11,17 @@ export const register = async (req) => {
     const { name, email, password } = body;
     console.log("Registration attempt for:", email);
 
-    // Check if user exists
     const userExists = await User.findOne({ email });
     if (userExists) {
       console.log("Registration failed: User already exists");
       return Response.json({ message: 'User already exists' }, { status: 400 });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 mins
+    const otpExpires = new Date(Date.now() + 10 * 60 * 1000);
 
-    // Create user
     const user = await User.create({
       name,
       email,

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import {
@@ -17,7 +17,6 @@ const DrugSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Detail State
   const [activeDrug, setActiveDrug] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [deepData, setDeepData] = useState(null);
@@ -66,8 +65,8 @@ const DrugSearch = () => {
     setLoading(true);
     setError(null);
     try {
-      // 1. RxNav Search for Candidates
-      const response = await fetch(`https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=${searchTerm}`);
+
+      const response = await fetch(`https:
       const data = await response.json();
 
       if (data.approximateGroup?.candidate) {
@@ -96,12 +95,11 @@ const DrugSearch = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     try {
-      // 1. RxNav Classes
-      const classRes = await fetch(`https://rxnav.nlm.nih.gov/REST/rxclass/class/byRxcui.json?rxcui=${drug.rxcui}&relaSource=ATC`);
+
+      const classRes = await fetch(`https:
       const classData = await classRes.json();
       const classes = classData.rxclassDrugInfoList?.rxclassDrugInfo?.map(c => c.rxclassMinConceptItem.className).slice(0, 5) || [];
 
-      // 2. Grok AI Deep Insights
       const aiData = await fetchAIDossier(drug.name);
 
       if (aiData) {
@@ -142,14 +140,11 @@ const DrugSearch = () => {
     }
   }, [initialQuery]);
 
-  // --- VIEWS ---
-
   return (
     <div className="min-h-screen bg-bg-page pt-14 pb-20 px-4 md:px-6">
       <AnimatePresence mode="wait">
         {!activeDrug ? (
 
-          // SEARCH VIEW
           <motion.div
             key="search"
             initial={{ opacity: 0, y: 10 }}
@@ -157,7 +152,7 @@ const DrugSearch = () => {
             exit={{ opacity: 0, scale: 0.98 }}
             className="max-w-4xl mx-auto"
           >
-            {/* Header */}
+            {}
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full mb-4">
                 <Activity className="w-3.5 h-3.5 text-primary animate-pulse" />
@@ -171,7 +166,7 @@ const DrugSearch = () => {
               </p>
             </div>
 
-            {/* Search Box */}
+            {}
             <div className="relative group mb-10">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur opacity-20 group-focus-within:opacity-100 transition duration-500" />
               <div className="relative bg-bg-card rounded-xl border border-border-nav shadow-lg p-1.5 flex items-center transition-all">
@@ -188,7 +183,7 @@ const DrugSearch = () => {
                 {loading && <Loader2 className="w-5 h-5 text-primary animate-spin mr-4" />}
               </div>
 
-              {/* Examples */}
+              {}
               <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
                 {examples.map(ex => (
                   <button
@@ -202,7 +197,7 @@ const DrugSearch = () => {
               </div>
             </div>
 
-            {/* Results Grid */}
+            {}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {results.map((drug, idx) => (
                 <motion.div
@@ -237,7 +232,6 @@ const DrugSearch = () => {
 
         ) : (
 
-          // DETAIL VIEW (Dossier Mode)
           <motion.div
             key="dossier"
             initial={{ opacity: 0, scale: 0.98 }}
@@ -245,7 +239,7 @@ const DrugSearch = () => {
             exit={{ opacity: 0, scale: 0.98 }}
             className="max-w-5xl mx-auto"
           >
-            {/* Dossier Header */}
+            {}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
               <button
                 onClick={() => setActiveDrug(null)}
@@ -277,7 +271,7 @@ const DrugSearch = () => {
               </div>
             ) : deepData && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-                {/* Title Card - Compact */}
+                {}
                 <div className="p-6 md:p-8 rounded-[2rem] bg-bg-card border border-border-nav shadow-md flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] rotate-12 scale-[2]">
                     <Stethoscope className="w-32 h-32" />
@@ -300,13 +294,13 @@ const DrugSearch = () => {
                   </div>
                 </div>
 
-                {/* Info Grid - High Density */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-                  {/* Left Column: Deep Medical Data */}
+                  {}
                   <div className="md:col-span-8 space-y-6">
 
-                    {/* Usage & Purpose */}
+                    {}
                     <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <BookOpen className="w-5 h-5 text-primary" />
@@ -315,7 +309,7 @@ const DrugSearch = () => {
                       <p className="text-[13px] text-text-body font-medium leading-relaxed opacity-80">{deepData.usage}</p>
                     </div>
 
-                    {/* Adverse Reactions & Interactions */}
+                    {}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="p-6 bg-amber-50/30 rounded-3xl border border-amber-100">
                         <div className="flex items-center gap-2 mb-3">
@@ -333,7 +327,7 @@ const DrugSearch = () => {
                       </div>
                     </div>
 
-                    {/* Dosage & Admin */}
+                    {}
                     <div className="p-6 bg-primary/[0.02] rounded-3xl border border-primary/5">
                       <div className="flex items-center gap-2.5 mb-4">
                         <LayoutGrid className="w-5 h-5 text-primary" />
@@ -344,7 +338,7 @@ const DrugSearch = () => {
                       </div>
                     </div>
 
-                    {/* Safety Panel */}
+                    {}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="p-6 bg-red-50/40 rounded-3xl border border-red-100">
                         <div className="flex items-center gap-2 mb-3">
@@ -362,7 +356,7 @@ const DrugSearch = () => {
                       </div>
                     </div>
 
-                    {/* Clinical Description */}
+                    {}
                     <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <Info className="w-5 h-5 text-text-muted" />
@@ -372,10 +366,10 @@ const DrugSearch = () => {
                     </div>
                   </div>
 
-                  {/* Right Column: Specifications */}
+                  {}
                   <div className="md:col-span-4 space-y-6">
 
-                    {/* Active Ingredients */}
+                    {}
                     <div className="p-6 bg-bg-card rounded-3xl border border-border-nav shadow-sm">
                       <div className="flex items-center gap-2.5 mb-4">
                         <FlaskConical className="w-4 h-4 text-primary" />
@@ -390,19 +384,19 @@ const DrugSearch = () => {
                       </div>
                     </div>
 
-                    {/* Overdosage */}
+                    {}
                     <div className="p-6 bg-red-600 rounded-3xl text-white shadow-lg">
                       <h4 className="text-[15px] font-bold  uppercase tracking-widest mb-3">Overdosage Protocol</h4>
                       <p className="text-[11px] font-semibold leading-relaxed">{deepData.overdosage}</p>
                     </div>
 
-                    {/* Storage */}
+                    {}
                     <div className="p-6 bg-bg-card border border-border-nav rounded-3xl text-text-heading shadow-lg">
                       <h4 className="text-[15px] font-bold  uppercase tracking-widest mb-3">Storage Guidelines</h4>
                       <p className="text-[11px] font-semibold leading-relaxed">{deepData.storage}</p>
                     </div>
 
-                    {/* Disclaimer */}
+                    {}
                     <div className="p-5 bg-amber-50 rounded-xl border border-amber-100">
                       <div className="flex gap-2">
                         <Info className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -24,7 +24,7 @@ const AboutPage = () => {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Bottle animation
+
       gsap.to(bottleRef.current, {
         y: 20,
         rotation: 5,
@@ -46,7 +46,6 @@ const AboutPage = () => {
         }
       });
 
-      // Tablet animation
       gsap.to(tabletRef.current, {
         y: -30,
         rotation: -10,
@@ -76,7 +75,7 @@ const AboutPage = () => {
   return (
     <div ref={containerRef} className="min-h-screen bg-bg-page pt-20 pb-20 overflow-hidden relative">
 
-      {/* Floating Assets */}
+      {}
       <div
         ref={bottleRef}
         className="fixed top-40 -left-10 w-24 lg:w-32 z-0 opacity-20 pointer-events-none"
@@ -93,10 +92,10 @@ const AboutPage = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Story Section */}
+        {}
         <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
 
-          {/* LEFT TEXT */}
+          {}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -132,7 +131,7 @@ const AboutPage = () => {
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE (FIXED + MODERN) */}
+          {}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
@@ -147,7 +146,7 @@ const AboutPage = () => {
               className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-border-nav w-[280px] lg:w-[340px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1587854680352-936b22b91030?q=80&w=1200&auto=format&fit=crop"
+                src="https:
                 alt="Our Expert Team"
                 className="w-full h-[350px] lg:h-[400px] object-cover"
               />
@@ -159,7 +158,7 @@ const AboutPage = () => {
 
         </div>
 
-        {/* Stats */}
+        {}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
           {stats.map((stat, i) => (
             <motion.div
@@ -179,7 +178,7 @@ const AboutPage = () => {
           ))}
         </div>
 
-        {/* Values */}
+        {}
         <div className="text-center mb-20">
           <h2 className="text-4xl font-extrabold text-text-heading mb-4">Values that Drive Us</h2>
           <p className="text-text-muted max-w-xl mx-auto">We prioritize integrity, safety, and care.</p>
