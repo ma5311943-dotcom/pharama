@@ -410,7 +410,58 @@ const ProductsAdmin = () => {
                       <div className="relative group h-[115px]">
                         <input
                           type="file"
-                          accept="image}
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        />
+                        {formData.image ? (
+                          <div className="w-full h-full rounded-xl overflow-hidden border border-border-nav">
+                            <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                            {uploading && (
+                              <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                                <Loader2 className="w-6 h-6 animate-spin text-white" />
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="w-full h-full rounded-xl border-2 border-dashed border-border-nav group-hover:border-primary/50 bg-bg-page flex flex-col items-center justify-center gap-2 transition-colors">
+                            {uploading ? (
+                              <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                            ) : (
+                              <>
+                                <ImageIcon className="w-6 h-6 text-text-muted group-hover:text-primary transition-colors" />
+                                <span className="text-[10px] font-bold text-text-muted group-hover:text-primary transition-colors">Upload Image</span>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-border-nav flex items-center justify-end gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-4 py-2.5 sm:py-3 rounded-xl text-[11px] font-bold text-text-muted hover:bg-bg-page transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submitting || uploading}
+                    className="px-6 py-2.5 sm:py-3 bg-primary text-white rounded-xl text-[11px] font-bold hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
+                  >
+                    {submitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                    {editingProduct ? 'Save Changes' : 'Add Product'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
       <Drawer.Root direction="bottom" open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-md" />
