@@ -1,11 +1,11 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
     const { messages } = await req.json();
 
     const apiKey = process.env.GROK_API_KEY || process.env.NEXT_PUBLIC_GROK_API_KEY;
-    const apiUrl = process.env.GROK_API_URL || process.env.NEXT_PUBLIC_GROK_API_URL || 'https:
+    const apiUrl = process.env.GROK_API_URL || process.env.NEXT_PUBLIC_GROK_API_URL || 'https://api.groq.com/openai/v1/chat/completions';
 
     if (!apiKey) {
       return NextResponse.json({ error: "Missing API Key" }, { status: 401 });

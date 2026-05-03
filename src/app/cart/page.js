@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -83,7 +83,7 @@ const CartPage = () => {
                   >
                     <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-border-nav bg-bg-page">
                       <img
-                        src={item.image || 'https:
+                        src={item.image || 'https://via.placeholder.com/300?text=No+Image'}
                         alt={item.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

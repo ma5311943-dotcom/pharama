@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -146,7 +146,7 @@ const AboutPage = () => {
               className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-border-nav w-[280px] lg:w-[340px]"
             >
               <img
-                src="https:
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80"
                 alt="Our Expert Team"
                 className="w-full h-[350px] lg:h-[400px] object-cover"
               />

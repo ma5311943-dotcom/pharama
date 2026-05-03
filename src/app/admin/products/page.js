@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -151,7 +151,7 @@ const ProductsAdmin = () => {
     if (query.length < 3) return;
     setDbLoading(true);
     try {
-      const res = await fetch(`https:
+      const res = await fetch(`https://rxnav.nlm.nih.gov/REST/Prescribe/drugs.json?name=${query}`);
       const data = await res.json();
       if (data.approximateGroup?.candidate) {
         const list = data.approximateGroup.candidate
@@ -175,7 +175,7 @@ const ProductsAdmin = () => {
   const autoFillProduct = async (drug) => {
     setDbLoading(true);
     try {
-      const classRes = await fetch(`https:
+      const classRes = await fetch(`https://rxnav.nlm.nih.gov/REST/rxclass/class/byRxcui.json?rxcui=${drug.rxcui}`);
       const classData = await classRes.json();
       const category = classData.rxclassDrugInfoList?.rxclassDrugInfo?.[0]?.rxclassMinConceptItem?.className || "General Medication";
 

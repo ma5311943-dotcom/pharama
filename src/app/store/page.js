@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -199,7 +199,7 @@ const StorePage = () => {
                     >
                       <div className="relative aspect-[4/3] overflow-hidden bg-bg-page">
                         <img
-                          src={product.image || 'https:
+                          src={product.image || 'https://via.placeholder.com/300?text=No+Image'}
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />

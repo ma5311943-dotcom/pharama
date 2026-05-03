@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import {
@@ -66,7 +66,7 @@ const DrugSearch = () => {
     setError(null);
     try {
 
-      const response = await fetch(`https:
+      const response = await fetch(`https://rxnav.nlm.nih.gov/REST/Prescribe/drugs.json?name=${searchTerm}`);
       const data = await response.json();
 
       if (data.approximateGroup?.candidate) {
@@ -96,7 +96,7 @@ const DrugSearch = () => {
 
     try {
 
-      const classRes = await fetch(`https:
+      const classRes = await fetch(`https://rxnav.nlm.nih.gov/REST/rxclass/class/byRxcui.json?rxcui=${drug.rxcui}`);
       const classData = await classRes.json();
       const classes = classData.rxclassDrugInfoList?.rxclassDrugInfo?.map(c => c.rxclassMinConceptItem.className).slice(0, 5) || [];
 
