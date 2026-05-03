@@ -126,7 +126,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-page flex items-center justify-center p-5 relative overflow-x-hidden">
 
       {}
       <div className="absolute top-[-12%] left-[-8%] w-[380px] h-[380px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
