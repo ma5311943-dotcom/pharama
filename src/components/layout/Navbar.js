@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -44,16 +44,25 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    if (isOpen && window.innerWidth < 768) {
-      document.body.style.overflow = 'hidden';
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = '';
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
-
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -235,11 +244,11 @@ const Navbar = () => {
             />
 
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-bg-card shadow-2xl z-50 md:hidden p-6 flex flex-col pt-20"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed inset-0 bg-bg-card z-40 md:hidden p-6 flex flex-col pt-24"
               data-lenis-prevent
             >
               <div className="flex flex-col space-y-1">
