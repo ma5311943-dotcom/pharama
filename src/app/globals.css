@@ -23,10 +23,19 @@
   --foreground: #ffffff;
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overflow-x: hidden;
+  /* Firefox: hide by default */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.5s ease;
+}
+
+html.is-scrolling, body.is-scrolling {
+  scrollbar-width: thin;
+  scrollbar-color: #00a8e8 transparent;
 }
 
 body {
@@ -37,22 +46,36 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── Custom Scrollbar (hide-on-stop) ─────────────────────────────────────── */
+
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
+/* Track always occupies space — prevents layout shift */
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: transparent !important;
 }
 
+/* Thumb: invisible by default, smooth fade */
 ::-webkit-scrollbar-thumb {
-  background: #00a8e8;
+  background-color: transparent !important;
   border-radius: 10px;
-  border: 2px solid #000000;
+  border: 1px solid transparent !important;
+  background-clip: content-box;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #0096c7;
+/* Thumb becomes visible when <html> or <body> has .is-scrolling */
+html.is-scrolling ::-webkit-scrollbar-thumb,
+body.is-scrolling ::-webkit-scrollbar-thumb {
+  background-color: #00a8e8 !important;
+  border-color: #000000 !important;
+}
+
+html.is-scrolling ::-webkit-scrollbar-thumb:hover,
+body.is-scrolling ::-webkit-scrollbar-thumb:hover {
+  background-color: #0096c7 !important;
 }
 
 h1,

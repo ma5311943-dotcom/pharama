@@ -24,6 +24,7 @@ import Preloader from "@/components/shared/Preloader";
 import SmoothScroll from "@/components/shared/SmoothScroll";
 import AIAssistant from "@/components/ui/AIAssistant";
 import CartSync from "@/components/shared/CartSync";
+import ScrollbarManager from "@/components/shared/ScrollbarManager";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           <CartSync />
           <CustomCursor />
           <Preloader />
+          <ScrollbarManager />
           <Toaster position="top-center" reverseOrder={false} />
           {hideShell ? (
             <main id="main-wrapper" className="h-full">

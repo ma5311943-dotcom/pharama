@@ -32,7 +32,7 @@ export async function POST(req) {
 
     const distance = euclideanDistance(faceDescriptor, user.faceDescriptor);
 
-    if (distance > 0.55) {
+    if (distance > 0.6) {
       return NextResponse.json({ success: false, message: 'Face not recognized' }, { status: 401 });
     }
 

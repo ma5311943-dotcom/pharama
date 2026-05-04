@@ -78,10 +78,11 @@ const DrugSearch = () => {
       const data = await res.json();
       
       let content = data.text;
-      if (content.includes("```json")) {
-        content = content.split("```json")[1].split("```")[0].trim();
-      } else if (content.includes("```")) {
-        content = content.split("```")[1].split("```")[0].trim();
+      
+      // Robust JSON extraction
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        content = jsonMatch[0];
       }
       
       return JSON.parse(content);
