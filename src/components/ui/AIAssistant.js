@@ -132,7 +132,7 @@ const AIAssistant = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-            className="mb-3 w-[350px] h-[520px] lg:h-[600px] bg-bg-card/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] border border-border-nav/60 flex flex-col overflow-hidden"
+            className="mb-3 w-[370px] h-[480px] lg:w-[440px] lg:h-[500px] bg-bg-card/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] border border-border-nav/60 flex flex-col overflow-hidden"
           >
             <div className="px-4 py-3 bg-primary text-white flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">

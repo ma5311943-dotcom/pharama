@@ -279,59 +279,61 @@ const Navbar = () => {
                     {user.role === 'admin' ? 'Placed Orders' : 'My Orders'}
                   </Link>
                 )}
+              </div>
 
               <div className="flex flex-col gap-3 pt-6 border-t border-border-nav">
                 {mounted && (
                   user ? (
-                    <div className="flex items-center gap-3 pl-2 border-l-2 border-primary/20">
-                      <Link
-                        href="/profile"
-                        className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <User className="w-5 h-5" />
-                      </Link>
-
-                      <div className="flex flex-col">
-                        <span className="text-[11px] font-bold text-text-heading truncate max-w-[120px]">
-                          {user.name}
-                        </span>
-
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => { handleLogout(); setIsOpen(false); }}
-                            className="text-[10px] font-bold text-red-500 hover:text-red-600 transition-colors cursor-pointer text-left uppercase tracking-wider"
-                          >
-                            Logout
-                          </button>
-
-                          {user.role === 'admin' && (
-                            <>
-                              <span className="text-gray-300">|</span>
-                              <Link 
-                                href="/admin" 
-                                className="text-[10px] font-bold text-primary uppercase tracking-wider"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                Dashboard
-                              </Link>
-                            </>
-                          )}
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 p-4 bg-bg-page rounded-2xl border border-border-nav/60">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                          <User className="w-6 h-6" />
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                          <span className="text-sm font-bold text-text-heading truncate">{user.name}</span>
+                          <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">{user.role}</span>
                         </div>
                       </div>
+                      
+                      <div className="grid grid-cols-2 gap-3">
+                        <Link
+                          href="/profile"
+                          className="flex items-center justify-center gap-2 bg-bg-card border border-border-nav text-text-heading py-4 rounded-xl font-bold text-sm cursor-pointer hover:bg-bg-page transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Profile
+                        </Link>
+                        <button
+                          onClick={() => { handleLogout(); setIsOpen(false); }}
+                          className="flex items-center justify-center gap-2 bg-red-500/5 border border-red-500/20 text-red-500 py-4 rounded-xl font-bold text-sm cursor-pointer hover:bg-red-500/10 transition-colors"
+                        >
+                          Logout
+                        </button>
+                      </div>
+
+                      {user.role === 'admin' && (
+                        <Link
+                          href="/admin"
+                          className="w-full flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl font-bold text-sm shadow-soft cursor-pointer hover:bg-primary-hover transition-all active:scale-[0.98]"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <LayoutDashboard className="w-4 h-4" />
+                          Admin Dashboard
+                        </Link>
+                      )}
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
                       <Link
                         href="/login"
-                        className="w-full flex items-center justify-center gap-2 bg-bg-card border border-border-nav text-text-heading py-3.5 rounded-xl font-bold text-sm cursor-pointer"
+                        className="w-full flex items-center justify-center gap-2 bg-bg-card border border-border-nav text-text-heading py-4 rounded-xl font-bold text-sm cursor-pointer hover:bg-bg-page transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
                         Login
                       </Link>
                       <Link
                         href="/register"
-                        className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3.5 rounded-xl font-bold text-sm shadow-soft cursor-pointer"
+                        className="w-full flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl font-bold text-sm shadow-soft cursor-pointer hover:bg-primary-hover transition-all active:scale-[0.98]"
                         onClick={() => setIsOpen(false)}
                       >
                         Sign Up
