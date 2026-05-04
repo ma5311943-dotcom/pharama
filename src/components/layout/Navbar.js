@@ -280,15 +280,14 @@ const Navbar = () => {
                   </Link>
                 )}
 
-              </div>
-
-              <div className="mt-auto pt-6 border-t border-border-nav flex flex-col gap-3">
+              <div className="flex flex-col gap-3 pt-6 border-t border-border-nav">
                 {mounted && (
                   user ? (
                     <div className="flex items-center gap-3 pl-2 border-l-2 border-primary/20">
                       <Link
                         href="/profile"
                         className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+                        onClick={() => setIsOpen(false)}
                       >
                         <User className="w-5 h-5" />
                       </Link>
@@ -300,7 +299,7 @@ const Navbar = () => {
 
                         <div className="flex items-center gap-2">
                           <button
-                            onClick={handleLogout}
+                            onClick={() => { handleLogout(); setIsOpen(false); }}
                             className="text-[10px] font-bold text-red-500 hover:text-red-600 transition-colors cursor-pointer text-left uppercase tracking-wider"
                           >
                             Logout
@@ -309,7 +308,11 @@ const Navbar = () => {
                           {user.role === 'admin' && (
                             <>
                               <span className="text-gray-300">|</span>
-                              <Link href="/admin" className="text-[10px] font-bold text-primary uppercase tracking-wider">
+                              <Link 
+                                href="/admin" 
+                                className="text-[10px] font-bold text-primary uppercase tracking-wider"
+                                onClick={() => setIsOpen(false)}
+                              >
                                 Dashboard
                               </Link>
                             </>
@@ -322,19 +325,24 @@ const Navbar = () => {
                       <Link
                         href="/login"
                         className="w-full flex items-center justify-center gap-2 bg-bg-card border border-border-nav text-text-heading py-3.5 rounded-xl font-bold text-sm cursor-pointer"
+                        onClick={() => setIsOpen(false)}
                       >
                         Login
                       </Link>
                       <Link
                         href="/register"
                         className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3.5 rounded-xl font-bold text-sm shadow-soft cursor-pointer"
+                        onClick={() => setIsOpen(false)}
                       >
                         Sign Up
                       </Link>
                     </div>
                   )
                 )}
-                <div className="flex items-center justify-center gap-2 text-text-muted py-2">
+              </div>
+
+              <div className="mt-auto pb-4 border-t border-border-nav/50">
+                <div className="flex items-center justify-center gap-2 text-text-muted py-4">
                   <PhoneCall className="w-4 h-4 text-secondary" />
                   <span className="text-sm">+1 (234) 567-890</span>
                 </div>

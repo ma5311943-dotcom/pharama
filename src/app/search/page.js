@@ -31,14 +31,10 @@ const DrugSearch = () => {
 
   const fetchAIDossier = async (drugName) => {
     try {
-      const res = await fetch(GROK_API_URL, {
+      const res = await fetch("/api/ai", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${GROK_API_KEY}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
           messages: [
             {
               role: "system",
@@ -46,14 +42,20 @@ const DrugSearch = () => {
             },
             { role: "user", content: `Medicine: ${drugName}` }
           ],
-          temperature: 0.2,
-          response_format: { type: "json_object" }
         }),
       });
 
       if (!res.ok) throw new Error("AI Service Unavailable");
       const data = await res.json();
-      return JSON.parse(data.choices[0].message.content);
+      
+      let content = data.text;
+      if (content.includes("```json")) {
+        content = content.split("```json")[1].split("```")[0].trim();
+      } else if (content.includes("```")) {
+        content = content.split("```")[1].split("```")[0].trim();
+      }
+      
+      return JSON.parse(content);
     } catch (err) {
       console.error("AI Fetch Error:", err);
       return null;
@@ -66,10 +68,19 @@ const DrugSearch = () => {
     setError(null);
     try {
 
-      const response = await fetch(`https://rxnav.nlm.nih.gov/REST/Prescribe/drugs.json?name=${searchTerm}`);
+      const response = await fetch(`https://rxnav.nlm.nih.gov/REST/drugs.json?name=${searchTerm}`);
       const data = await response.json();
 
-      if (data.approximateGroup?.candidate) {
+      if (data.drugGroup?.conceptGroup) {
+        const candidates = data.drugGroup.conceptGroup
+          .flatMap(group => group.conceptProperties || [])
+          .filter(item => item.name)
+          .reduce((acc, current) => {
+            if (!acc.find(item => item.rxcui === current.rxcui)) acc.push(current);
+            return acc;
+          }, []);
+        setResults(candidates.slice(0, 10));
+      } else if (data.approximateGroup?.candidate) {
         const candidates = data.approximateGroup.candidate
           .filter(item => item.name)
           .reduce((acc, current) => {
