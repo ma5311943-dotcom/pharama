@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,10 @@ export default function CartSync() {
   const { user } = useSelector((state) => state.auth);
   const isInitialMount = useRef(true);
 
+  // Load cart from DB or LocalStorage on mount
   useEffect(() => {
-    const fetchCart = async () => {
+    const initCart = async () => {
+      // 1. Try to load from DB if user is logged in
       if (user?._id) {
         try {
           const res = await fetch(`/api/cart?userId=${user._id}`);
@@ -21,20 +23,39 @@ export default function CartSync() {
               items: data.data.items,
               totalAmount: data.data.totalAmount
             }));
+            return; // Exit after successful DB load
           }
         } catch (error) {
           console.error('Failed to sync cart from DB:', error);
         }
       }
+
+      // 2. If guest or DB was empty, try to load from LocalStorage
+      const savedCart = localStorage.getItem('pharma_cart');
+      if (savedCart) {
+        try {
+          const parsedCart = JSON.parse(savedCart);
+          if (parsedCart.items && parsedCart.items.length > 0) {
+            dispatch(setCart(parsedCart));
+          }
+        } catch (e) {
+          console.error('Failed to parse saved cart:', e);
+        }
+      }
     };
-    fetchCart();
+
+    initCart();
   }, [user?._id, dispatch]);
 
+  // Save to DB and LocalStorage whenever items change
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
     }
+
+    // Always save to LocalStorage for persistence
+    localStorage.setItem('pharma_cart', JSON.stringify({ items, totalAmount }));
 
     const syncToDB = async () => {
       if (user?._id) {

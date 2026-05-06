@@ -48,6 +48,7 @@ const cartSlice = createSlice({
     setCart(state, action) {
       state.items = action.payload.items?.map(item => ({
         ...item,
+        id: item.id || item._id,
         price: Number(item.price) || 0,
         totalPrice: (Number(item.price) || 0) * (Number(item.quantity) || 1)
       })) || [];
